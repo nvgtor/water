@@ -45,13 +45,13 @@ public class RepairListActivity extends Activity implements UnPatrolLoadListview
         tv_title = (TextView)findViewById(R.id.id_detail_back_title);
         tv_title.setText("待办维修");
 
-        btn_repaired.setOnClickListener(new View.OnClickListener() {
+        /*btn_repaired.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(RepairListActivity.this, PatrolTaskListActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
 
 
         img_back.setOnClickListener(new View.OnClickListener() {

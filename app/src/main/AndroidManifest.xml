@@ -81,6 +81,8 @@
         <activity android:name=".activity.PatroledListActivity"/>
         <activity android:name=".activity.PatroledListDetailActivity"/>
         <activity android:name=".activity.RepairListActivity"/>
+        <activity android:name=".activity.IncidentReportActivity"/>
+        <activity android:name=".activity.TemporaryTaskActivity"/>
 
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"

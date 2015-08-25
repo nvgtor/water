@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -148,11 +147,6 @@ public class PatrolTaskListActivity extends Activity implements UnPatrolLoadList
 
     };
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
 
     /**
      * asyc-http for patrolTask

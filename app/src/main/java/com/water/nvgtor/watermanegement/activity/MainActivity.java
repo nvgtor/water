@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -83,13 +82,16 @@ public class MainActivity extends FragmentActivity{
                         startActivity(intent1);
                         break;
                     case 2:
-                        Toast.makeText(MainActivity.this, "临时任务" , Toast.LENGTH_SHORT).show();
+                        Intent intent2 = new Intent(MainActivity.this, TemporaryTaskActivity.class);
+                        startActivity(intent2);
                         break;
                     case 3:
-                        Toast.makeText(MainActivity.this, "事件上报" , Toast.LENGTH_SHORT).show();
+                        Intent intent3 = new Intent(MainActivity.this, IncidentReportActivity.class);
+                        startActivity(intent3);
                         break;
                     case 4:
-                        Toast.makeText(MainActivity.this, "巡检地图" , Toast.LENGTH_SHORT).show();
+                        Intent intent4 = new Intent(MainActivity.this, PatrolMapDetailActivity.class);
+                        startActivity(intent4);
                         break;
                     case 5:
                         Toast.makeText(MainActivity.this, "通讯录" , Toast.LENGTH_SHORT).show();
@@ -281,13 +283,5 @@ public class MainActivity extends FragmentActivity{
             selectTab(position);
         }
     };*/
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
 
 }

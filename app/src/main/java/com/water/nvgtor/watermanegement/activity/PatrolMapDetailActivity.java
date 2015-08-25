@@ -527,6 +527,7 @@ public class PatrolMapDetailActivity extends Activity {
         {
             case android.R.id.home:
                 finish();
+                break;
             case R.id.id_map_common:
                 mBaiduMap.setMapType(BaiduMap.MAP_TYPE_NORMAL);
                 break;
