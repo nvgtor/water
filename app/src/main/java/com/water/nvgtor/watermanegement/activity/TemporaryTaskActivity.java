@@ -13,7 +13,7 @@ import android.view.ViewConfiguration;
 import android.view.Window;
 
 import com.water.nvgtor.watermanegement.R;
-import com.water.nvgtor.watermanegement.fragment.TabFragment;
+import com.water.nvgtor.watermanegement.fragment.TempTaskDo;
 import com.water.nvgtor.watermanegement.view.ChangeColorIconWithTextView;
 
 import java.lang.reflect.Field;
@@ -31,8 +31,7 @@ public class TemporaryTaskActivity extends FragmentActivity implements
     private List<Fragment> mTabs = new ArrayList<Fragment>();
     private FragmentPagerAdapter mAdapter;
 
-    private String[] mTitles = new String[] { "First Fragment!",
-            "Second Fragment!" };
+    //private String[] mTitles = new String[] { "First Fragment!", "Second Fragment!" };
 
     private List<ChangeColorIconWithTextView> mTabIndicator = new ArrayList<ChangeColorIconWithTextView>();
 
@@ -62,14 +61,18 @@ public class TemporaryTaskActivity extends FragmentActivity implements
     private void initDatas()
     {
 
-        for (String title : mTitles)
+        /*for (String title : mTitles)
         {
             TabFragment tabFragment = new TabFragment();
             Bundle args = new Bundle();
             args.putString("title", title);
             tabFragment.setArguments(args);
             mTabs.add(tabFragment);
-        }
+        }*/
+        TempTaskDo tempTaskDo = new TempTaskDo();
+        mTabs.add(tempTaskDo);
+        TempTaskDo taskDo = new TempTaskDo();
+        mTabs.add(taskDo);
 
         mAdapter = new FragmentPagerAdapter(getSupportFragmentManager())
         {
