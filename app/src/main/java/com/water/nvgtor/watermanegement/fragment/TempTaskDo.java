@@ -38,7 +38,7 @@ public class TempTaskDo extends Fragment implements UnPatrolLoadListview.ILoadLi
         return view;
     }
 
-    private void showListView(View view, ArrayList<TempTasking> tempTaskList){
+    /*private void showListView(View view, ArrayList<TempTasking> tempTaskList){
         if (adapter == null){
             loadListview = (UnPatrolLoadListview) view.findViewById(R.id.id_tempTask_do_list);
             loadListview.setInterface(this);
@@ -48,7 +48,7 @@ public class TempTaskDo extends Fragment implements UnPatrolLoadListview.ILoadLi
         }else {
             adapter.onDataChange(tempTaskList);
         }
-    }
+    }*/
 
     private void getData(){
         for(int i = 0; i < 5; i++){

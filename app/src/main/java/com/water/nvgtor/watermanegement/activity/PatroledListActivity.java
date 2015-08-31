@@ -1,3 +1,4 @@
+/*
 package com.water.nvgtor.watermanegement.activity;
 
 import android.app.Activity;
@@ -19,9 +20,11 @@ import com.water.nvgtor.watermanegement.view.UnPatrolLoadListview;
 
 import java.util.ArrayList;
 
+*/
 /**
  * Created by dell on 2015/8/11.
- */
+ *//*
+
 public class PatroledListActivity extends Activity implements UnPatrolLoadListview.ILoadListener{
 
     ArrayList<PatroledTask> patroledList = new ArrayList<PatroledTask>();
@@ -126,7 +129,7 @@ public class PatroledListActivity extends Activity implements UnPatrolLoadListvi
             // TODO Auto-generated method stub
             super.handleMessage(msg);
             switch(msg.what){//如果item项目里有多个按钮触发，可以在这里区分
-                case R.id.patroled_task_item6:
+                case R.id.id_patroled_tasking_item6:
                     //switch (msg.arg1){
                     //case 0:
                     Intent intent = new Intent(PatroledListActivity.this, PatroledListDetailActivity.class);
@@ -140,3 +143,4 @@ public class PatroledListActivity extends Activity implements UnPatrolLoadListvi
     };
 
 }
+*/

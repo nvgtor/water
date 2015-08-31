@@ -43,7 +43,7 @@ public class ChangeColorIconWithTextView extends View
 	/**
 	 * icon底部文本
 	 */
-	private String mText = "微信";
+	private String mText = "hello world";
 	private int mTextSize = (int) TypedValue.applyDimension(
 			TypedValue.COMPLEX_UNIT_SP, 10, getResources().getDisplayMetrics());
 	private Paint mTextPaint;

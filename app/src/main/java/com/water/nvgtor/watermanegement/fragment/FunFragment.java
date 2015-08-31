@@ -1,3 +1,4 @@
+/*
 package com.water.nvgtor.watermanegement.fragment;
 
 import android.content.Intent;
@@ -14,9 +15,11 @@ import com.water.nvgtor.watermanegement.R;
 import com.water.nvgtor.watermanegement.activity.PatrolTaskListActivity;
 import com.water.nvgtor.watermanegement.adapter.MyGridAdapter;
 
+*/
 /**
  * Created by dell on 2015/7/22.
- */
+ *//*
+
 public class FunFragment extends Fragment {
     //String text;
     private GridView gridView;
@@ -29,8 +32,10 @@ public class FunFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        /*Bundle args = getArguments();
-        text = args != null ? args.getString("text") : "";*/
+        */
+/*Bundle args = getArguments();
+        text = args != null ? args.getString("text") : "";*//*
+
         super.onCreate(savedInstanceState);
     }
 
@@ -55,3 +60,4 @@ public class FunFragment extends Fragment {
         return view;
     }
 }
+*/

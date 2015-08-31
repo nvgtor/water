@@ -3,14 +3,14 @@ package com.water.nvgtor.watermanegement.bean;
 import java.util.List;
 
 /**
- * Created by dell on 2015/8/21.
+ * Created by dell on 2015/8/31.
  */
-public class PatrolJson {
+public class RepairJson {
     private int pageNumber;
     private int pageSize;
     private int total;
     private int totalPage;
-    private List<PatrolRows> rows;
+    private List<RepairRows> rows;
 
     public int getPageNumber() {
         return pageNumber;
@@ -44,17 +44,17 @@ public class PatrolJson {
         this.totalPage = totalPage;
     }
 
-    public List<PatrolRows> getRows() {
+    public List<RepairRows> getRows() {
         return rows;
     }
 
-    public void setRows(List<PatrolRows> rows) {
+    public void setRows(List<RepairRows> rows) {
         this.rows = rows;
     }
 
     @Override
     public String toString() {
-        return "PatrolJson{" +
+        return "RepairJson{" +
                 "pageNumber=" + pageNumber +
                 ", pageSize=" + pageSize +
                 ", total=" + total +

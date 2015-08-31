@@ -72,17 +72,18 @@
             android:theme="@style/MapTheme">
         </activity>
         <activity
-            android:name=".activity.PatrolTaskListActivity"
+            android:name=".activity.RepairModelActivity"
             android:theme="@style/MapTheme">
         </activity>
         <activity android:name=".activity.PatrolTaskDetailActivity">
 
         </activity>
-        <activity android:name=".activity.PatroledListActivity"/>
+
         <activity android:name=".activity.PatroledListDetailActivity"/>
-        <activity android:name=".activity.RepairListActivity"/>
+
         <activity android:name=".activity.IncidentReportActivity"/>
         <activity android:name=".activity.TemporaryTaskActivity"/>
+        <activity android:name=".activity.PatrolModelActivity"/>
 
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"

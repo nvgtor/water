@@ -1,3 +1,4 @@
+/*
 package com.water.nvgtor.watermanegement.activity;
 
 import android.app.Activity;
@@ -26,9 +27,11 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+*/
 /**
  * Created by dell on 2015/8/3.
- */
+ *//*
+
 public class PatrolTaskListActivity extends Activity implements UnPatrolLoadListview.ILoadListener {
 
     ArrayList<PatrolTask> patrolList = new ArrayList<PatrolTask>();
@@ -82,7 +85,7 @@ public class PatrolTaskListActivity extends Activity implements UnPatrolLoadList
             loadListview = (UnPatrolLoadListview) findViewById(R.id.task_list);
             loadListview.setInterface(this);
             adapter = new PatrolTaskListAdapter(this, patrolList);
-            adapter.setHandler(handler_h);
+            //adapter.setHandler(handler_h);
             loadListview.setAdapter(adapter);
         } else {
             adapter.onDataChange(patrolList);
@@ -93,7 +96,6 @@ public class PatrolTaskListActivity extends Activity implements UnPatrolLoadList
         for (int i = 0; i < 10; i++) {
             PatrolTask entity = new PatrolTask();
             entity.setTaskName("A片区巡检");
-            entity.setTaskArea("A片区");
             entity.setExecuteMan("张默默");
             entity.setDeadline("2015-8-15");
             patrolList.add(entity);
@@ -104,7 +106,6 @@ public class PatrolTaskListActivity extends Activity implements UnPatrolLoadList
         for (int i = 0; i < 2; i++) {
             PatrolTask entity = new PatrolTask();
             entity.setTaskName("B片区巡检");
-            entity.setTaskArea("B片区");
             entity.setExecuteMan("李弘一");
             entity.setDeadline("2015-9-1");
             patrolList.add(entity);
@@ -148,9 +149,11 @@ public class PatrolTaskListActivity extends Activity implements UnPatrolLoadList
     };
 
 
-    /**
+    */
+/**
      * asyc-http for patrolTask
-     */
+     *//*
+
     public void downloadClick() {
         String url = "http://172.17.192.1:8080/water-patrol/patrol/patrolMission/listJson";
         HttpUtil.get(url, new JsonHttpResponseHandler() {
@@ -169,4 +172,4 @@ public class PatrolTaskListActivity extends Activity implements UnPatrolLoadList
             }
         });
     }
-}
+}*/

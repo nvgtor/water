@@ -1,10 +1,9 @@
 package com.water.nvgtor.watermanegement.bean;
 
 /**
- * Created by dell on 2015/8/21.
+ * Created by dell on 2015/8/28.
  */
-public class PatrolRows {
-
+public class PatroledRows{
     private String id;
     private String planID;
     private String planName;
@@ -12,6 +11,7 @@ public class PatrolRows {
     private String startTime;
     private double timeLimit;
     private String dispatchingPerson;
+    private int finalStatus;//0待审核1审核通过
 
     public String getId() {
         return id;
@@ -69,9 +69,17 @@ public class PatrolRows {
         this.dispatchingPerson = dispatchingPerson;
     }
 
+    public int getFinalStatus() {
+        return finalStatus;
+    }
+
+    public void setFinalStatus(int finalStatus) {
+        this.finalStatus = finalStatus;
+    }
+
     @Override
     public String toString() {
-        return "PatrolRows{" +
+        return "PatroledRows{" +
                 "id='" + id + '\'' +
                 ", planID='" + planID + '\'' +
                 ", planName='" + planName + '\'' +
@@ -79,6 +87,7 @@ public class PatrolRows {
                 ", startTime='" + startTime + '\'' +
                 ", timeLimit=" + timeLimit +
                 ", dispatchingPerson='" + dispatchingPerson + '\'' +
+                ", finalStatus=" + finalStatus +
                 '}';
     }
 }

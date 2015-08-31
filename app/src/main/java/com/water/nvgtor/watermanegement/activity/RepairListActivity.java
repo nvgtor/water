@@ -1,3 +1,4 @@
+/*
 package com.water.nvgtor.watermanegement.activity;
 
 import android.app.Activity;
@@ -19,9 +20,11 @@ import com.water.nvgtor.watermanegement.view.UnPatrolLoadListview;
 
 import java.util.ArrayList;
 
+*/
 /**
  * Created by dell on 2015/8/21.
- */
+ *//*
+
 public class RepairListActivity extends Activity implements UnPatrolLoadListview.ILoadListener{
     ArrayList<RepairTask> repairList = new ArrayList<RepairTask>();
     RepairTaskAdapter adapter;
@@ -45,13 +48,15 @@ public class RepairListActivity extends Activity implements UnPatrolLoadListview
         tv_title = (TextView)findViewById(R.id.id_detail_back_title);
         tv_title.setText("待办维修");
 
-        /*btn_repaired.setOnClickListener(new View.OnClickListener() {
+        */
+/*btn_repaired.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(RepairListActivity.this, PatrolTaskListActivity.class);
                 startActivity(intent);
             }
-        });*/
+        });*//*
+
 
 
         img_back.setOnClickListener(new View.OnClickListener() {
@@ -137,3 +142,4 @@ public class RepairListActivity extends Activity implements UnPatrolLoadListview
     };
 
 }
+*/

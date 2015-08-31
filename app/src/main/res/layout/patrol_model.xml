@@ -1,11 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:zhy="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical" >
+              android:layout_height="match_parent">
+
+    <include layout="@layout/back_head_for_patrol"/>
 
     <android.support.v4.view.ViewPager
-        android:id="@+id/id_viewpager"
+        android:id="@+id/id_tasking_viewpager"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight="1" >
@@ -18,24 +21,23 @@
         android:orientation="horizontal" >
 
         <com.water.nvgtor.watermanegement.view.ChangeColorIconWithTextView
-            android:id="@+id/id_indicator_one"
+            android:id="@+id/id_indicator_tasking_one"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:padding="5dp"
             zhy:icon="@drawable/tab_unpatrol"
-            zhy:text="@string/tab_weixin"
+            zhy:text="@string/patrol_task"
             zhy:text_size="12sp" />
 
         <com.water.nvgtor.watermanegement.view.ChangeColorIconWithTextView
-            android:id="@+id/id_indicator_two"
+            android:id="@+id/id_indicator_tasking_two"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:padding="5dp"
             zhy:icon="@drawable/tab_patroled"
-            zhy:text="@string/tab_contact"
+            zhy:text="@string/patroled_task"
             zhy:text_size="12sp" />
     </LinearLayout>
-
 </LinearLayout>
