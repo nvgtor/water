@@ -135,7 +135,7 @@ public class PatroledTasking extends Fragment implements UnPatrolLoadListview.IL
     };*/
 
     public void downloadClick() {
-        String url = "http://172.19.53.1:8080/water-patrol/patrol/examine/listJson";
+        String url = "http://172.17.192.1:8080/water-patrol/patrol/examine/listJson";
         HttpUtil.get(url, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {

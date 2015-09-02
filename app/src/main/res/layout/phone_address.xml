@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <include layout="@layout/back_head_for_patrol"/>
+
+    <LinearLayout
+        android:id="@+id/id_phone_ly"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#C0C0C0">
+        <TextView
+            android:id="@+id/id_phone_addr_1"
+            android:layout_width="70dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:text="序"
+            android:layout_marginLeft="4dp"
+            android:layout_marginStart="4dp"/>
+        <TextView
+            android:id="@+id/id_phone_addr_2"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:text="姓名"/>
+        <TextView
+            android:id="@+id/id_phone_addr_3"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:text="手机"/>
+        <TextView
+            android:id="@+id/id_phone_addr_4"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:text="职务"/>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/id_phone_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#696969" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <com.water.nvgtor.watermanegement.view.UnPatrolLoadListview
+            android:id="@+id/id_phone_addr_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:cacheColorHint="#00000000"
+            android:divider="#A9A9A9"
+            android:dividerHeight="1dp">
+        </com.water.nvgtor.watermanegement.view.UnPatrolLoadListview>
+    </LinearLayout>
+
+</LinearLayout>

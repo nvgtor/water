@@ -97,11 +97,11 @@ public class PatrolTasking extends Fragment implements UnPatrolLoadListview.ILoa
                 //通知listview加载完毕
                 loadListview.loadComplete();
             }
-        }, 1000);
+        }, 3000);
     }
 
     public void downloadClick() {
-        String url = "http://172.19.53.1:8080/water-patrol/patrol/patrolMission/listJson";
+        String url = "http://172.17.192.1:8080/water-patrol/patrol/patrolMission/listJson";
         HttpUtil.get(url, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
@@ -126,7 +126,7 @@ public class PatrolTasking extends Fragment implements UnPatrolLoadListview.ILoa
                     public void run() {
                         progressBar.setVisibility(View.GONE);
                     }
-                }, 500);
+                }, 3000);
             }
 
             @Override

@@ -12,6 +12,8 @@ public class PatrolRows {
     private String startTime;
     private double timeLimit;
     private String dispatchingPerson;
+    private String dispatchTime;
+    private String remark;
 
     public String getId() {
         return id;
@@ -68,6 +70,21 @@ public class PatrolRows {
     public void setDispatchingPerson(String dispatchingPerson) {
         this.dispatchingPerson = dispatchingPerson;
     }
+    public String getDispatchTime() {
+        return dispatchTime;
+    }
+
+    public void setDispatchTime(String dispatchTime) {
+        this.dispatchTime = dispatchTime;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
 
     @Override
     public String toString() {
@@ -79,6 +96,8 @@ public class PatrolRows {
                 ", startTime='" + startTime + '\'' +
                 ", timeLimit=" + timeLimit +
                 ", dispatchingPerson='" + dispatchingPerson + '\'' +
+                ", dispatchTime='" + dispatchTime + '\'' +
+                ", remark='" + remark + '\'' +
                 '}';
     }
 }

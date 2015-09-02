@@ -19,10 +19,9 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,22 +41,27 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-
 /**
- * Created by dell on 2015/8/24.
+ * Created by dell on 2015/9/1.
  */
-public class IncidentReportActivity extends Activity {
+public class PatrolDetailReportActivity extends Activity{
+    private ImageView img_back;
+    private TextView tv_title;
+    private ImageView img_loc;
+    private RelativeLayout myRelayout;
+
+    private String missionID,patrolPointID,deviceID;
+
     //录音相关
     private ListView mListView;
     private ArrayAdapter<Recorder> mAdapter;
     private List<Recorder> mDatas = new ArrayList<Recorder>();
     private AudioRecorderButton mAudioRecorderButton;
     private View animView;
+
     int REQUEST_CAMERA = 0, SELECT_FILE = 1;
     private boolean[] imgState = {false,false,false,false};
     //拍照
@@ -67,126 +71,33 @@ public class IncidentReportActivity extends Activity {
     private ImageView img2;
     private ImageView img3;
     private ImageView img4;
-    private LinearLayout imgLayout;
+
     private Button btn_finish;
-
-    //editText
-    private EditText addr;
-    private EditText man;
-    private EditText reflect;
-
-    private ImageView backImg;
-    private TextView title;
-    private ImageView rImg;
-
-    private LinearLayout incidentLayout;
-
-    //上传参数
-    private ArrayList<String> photoUrl = new ArrayList<>();
-    private String happenAddr;
-    private String reflectPeople;
-    private String reflectContent;
-    private String acceptTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.incident_reporting);
+        setContentView(R.layout.map_device_point_detail);
 
         initView();
-        addr.getText();
-        man.getText();
-        reflect.getText();
-        initClick();
+        tv_title.setText("巡检点巡检");
+        //拍照事件监听
         takePhoto();
+        //录音事件
         initRecorder();
-
+        Intent intent = getIntent();
+        missionID = intent.getStringExtra("patrolMissionID");
+        Log.e("missionID", missionID);
+        patrolPointID = intent.getStringExtra("pointID");
+        Log.e("pointID", patrolPointID+"");
+        deviceID = intent.getStringExtra("deviceID");
+        Log.e("deviceID", deviceID);
+        initClick();
     }
-    private void initView(){
-        backImg = (ImageView) findViewById(R.id.id_detail_back_img);
-        title = (TextView) findViewById(R.id.id_detail_back_title);
-        rImg = (ImageView)findViewById(R.id.id_detail_patrol_loc);
-        title.setText("事件上报");
-        rImg.setVisibility(View.GONE);
-
-        addr = (EditText) findViewById(R.id.id_incident_report_address);
-        man = (EditText) findViewById(R.id.id_incident_report_man);
-        reflect = (EditText) findViewById(R.id.id_incident_report_reflectContent);
-
-
-        imgLayout = (LinearLayout) findViewById(R.id.id_incident_report_photo);
-        incidentLayout = (LinearLayout) findViewById(R.id.id_incident_layout);
-
-        btnCamera = (Button)findViewById(R.id.id_incident_camera);
-        btnGallery = (Button) findViewById(R.id.id_incident_gallery);
-        img1 = (ImageView) findViewById(R.id.id_report_img_add_1);
-        img2 = (ImageView) findViewById(R.id.id_report_img_add_2);
-        img3 = (ImageView) findViewById(R.id.id_report_img_add_3);
-        img4 = (ImageView) findViewById(R.id.id_report_img_add_4);
-
-        btn_finish = (Button) findViewById(R.id.id_incident_report_finish);
-    }
-
-    private void initClick(){
-        backImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-        incidentLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
-            }
-        });
-
-        btn_finish.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(IncidentReportActivity.this, "提交", Toast.LENGTH_SHORT).show();
-                Log.e("photoUrl", photoUrl.toString());
-                postData();
-            }
-        });
-    }
-
-    private void postData(){
-        SimpleDateFormat formatter   =   new   SimpleDateFormat   ("yyyy年MM月dd日   HH:mm:ss     ");
-        Date   curDate   =   new   Date(System.currentTimeMillis());//获取当前时间
-        acceptTime = formatter.format(curDate);
-        String url = "http://http://172.17.192.1:8080/patrol/event/event/addJson";
-        RequestParams params = new RequestParams();
-        params.put("happenAddr",addr.getText());
-        params.put("reflectPeople", man.getText());
-        params.put("reflectContent",reflect.getText());
-        params.put("acceptTime",acceptTime);
-        File myFile = new File(photoUrl.get(0));
-        try {
-            params.put("image", myFile,"application/octet-st ream");
-            Log.e("params", params.toString());
-            HttpUtil.post(url, params, new AsyncHttpResponseHandler() {
-                @Override
-                public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                    Log.e("success", new String(responseBody));
-                }
-
-                @Override
-                public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                    Log.e("failure", "failure post");
-                }
-            });
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
     private void initRecorder(){
-        mListView = (ListView) findViewById(R.id.id_incident_recorder_list);
-        mAudioRecorderButton = (AudioRecorderButton) findViewById(R.id.id_incident_microphone);
+        mListView = (ListView) findViewById(R.id.id_device_recorder_list);
+        mAudioRecorderButton = (AudioRecorderButton) findViewById(R.id.id_map_device_microphone);
         mAudioRecorderButton.setAudioFinishRecorderListener(new AudioRecorderButton.AudioFinishRecorderListener() {
             @Override
             public void onFinish(float seconds, String filePath) {
@@ -199,7 +110,7 @@ public class IncidentReportActivity extends Activity {
 
         mAdapter = new RecorderAdapter(this,mDatas);
         mListView.setAdapter(mAdapter);
-        mListView.setVisibility(View.VISIBLE);
+
         //listView的item点击事件
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -224,6 +135,80 @@ public class IncidentReportActivity extends Activity {
             }
         });
     }
+
+    private void initView(){
+        myRelayout = (RelativeLayout) findViewById(R.id.id_map_marker_detail);
+
+        img_back = (ImageView) findViewById(R.id.id_detail_back_img);
+        tv_title = (TextView) findViewById(R.id.id_detail_back_title);
+        img_loc = (ImageView)findViewById(R.id.id_detail_patrol_loc);
+        img_loc.setImageResource(R.drawable.right_loc);
+
+        btnCamera = (Button)findViewById(R.id.id_map_device_camera);
+        btnGallery = (Button) findViewById(R.id.id_map_device_gallery);
+        img1 = (ImageView) findViewById(R.id.id_map_img_add_1);
+        img2 = (ImageView) findViewById(R.id.id_map_img_add_2);
+        img3 = (ImageView) findViewById(R.id.id_map_img_add_3);
+        img4 = (ImageView) findViewById(R.id.id_map_img_add_4);
+
+        btn_finish = (Button) findViewById(R.id.id_map_device_finish);
+    }
+
+    private void initClick(){
+        img_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        img_loc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PatrolDetailReportActivity.this, PatrolMapDetailActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        //点击取消EditView的焦点
+        myRelayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+            }
+        });
+
+        //完成button
+        btn_finish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                postData();
+                Toast.makeText(PatrolDetailReportActivity.this, "正在上传",Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void postData(){
+        RequestParams params = new RequestParams();
+        params.add("missionID",missionID);
+        params.add("patrolPointID",patrolPointID);
+        params.add("deviceID",deviceID);
+        params.add("status",1+"");
+        String url = "http://172.17.192.1:8080/water-patrol/patrol/record/addJson";
+        HttpUtil.post(url, params, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                    Log.e("POST SUCCESS", new String(responseBody));
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                Log.e("post failure", responseBody.toString());
+            }
+        });
+    }
+
     private void takePhoto(){
         btnCamera.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -245,7 +230,7 @@ public class IncidentReportActivity extends Activity {
         });
     }
 
-    @Override
+   @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
@@ -263,9 +248,7 @@ public class IncidentReportActivity extends Activity {
 
         File destination = new File(Environment.getExternalStorageDirectory(),
                 System.currentTimeMillis() + ".jpg");
-        Log.e("photo url", destination.toString());
-        photoUrl.add(destination.toString());
-        //Log.e("photoUrl", photoUrl.toString());
+
         FileOutputStream fo;
         try {
             destination.createNewFile();
@@ -278,7 +261,6 @@ public class IncidentReportActivity extends Activity {
             e.printStackTrace();
         }
 
-        imgLayout.setVisibility(View.VISIBLE);
         if (!imgState[0]){
             img1.setImageBitmap(thumbnail);
             imgState[0] = true;
@@ -292,11 +274,11 @@ public class IncidentReportActivity extends Activity {
             img4.setImageBitmap(thumbnail);
             imgState[3] = true;
         }else{
-            Toast.makeText(IncidentReportActivity.this, "最多上传4张照片", Toast.LENGTH_SHORT).show();
+            Toast.makeText(PatrolDetailReportActivity.this, "最多上传4张照片",Toast.LENGTH_SHORT).show();
         }
     }
 
-    @SuppressWarnings("deprecation")
+   @SuppressWarnings("deprecation")
     private void onSelectFromGalleryResult(Intent data) {
         Uri selectedImageUri = data.getData();
         String[] projection = { MediaStore.MediaColumns.DATA };
@@ -306,9 +288,8 @@ public class IncidentReportActivity extends Activity {
         cursor.moveToFirst();
 
         String selectedImagePath = cursor.getString(column_index);
-        Log.e("gallery path", selectedImagePath);
-        photoUrl.add(selectedImagePath);
-        //Log.e("photoUrl", photoUrl.toString());
+
+        Bitmap bm;
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
         BitmapFactory.decodeFile(selectedImagePath, options);
@@ -319,9 +300,8 @@ public class IncidentReportActivity extends Activity {
             scale *= 2;
         options.inSampleSize = scale;
         options.inJustDecodeBounds = false;
-        Bitmap bm = BitmapFactory.decodeFile(selectedImagePath, options);
+        bm = BitmapFactory.decodeFile(selectedImagePath, options);
 
-        imgLayout.setVisibility(View.VISIBLE);
         if (!imgState[0]){
             img1.setImageBitmap(bm);
             imgState[0] = true;
@@ -335,8 +315,7 @@ public class IncidentReportActivity extends Activity {
             img4.setImageBitmap(bm);
             imgState[3] = true;
         }else{
-            Toast.makeText(IncidentReportActivity.this, "最多上传4张照片",Toast.LENGTH_SHORT).show();
+            Toast.makeText(PatrolDetailReportActivity.this, "最多上传4张照片",Toast.LENGTH_SHORT).show();
         }
     }
 }
-

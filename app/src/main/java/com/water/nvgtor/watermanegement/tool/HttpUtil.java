@@ -52,12 +52,15 @@ public class HttpUtil {
     public static void get(String uString, BinaryHttpResponseHandler bHandler) {
 
         client.get(uString, bHandler);
-
     }
 
     public static AsyncHttpClient getClient(){
-
         return client;
     }
+
+    public static void post(String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {
+        client.post(url, params, responseHandler);
+    }
+
 
 }

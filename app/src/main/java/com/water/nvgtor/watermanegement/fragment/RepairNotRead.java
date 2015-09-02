@@ -31,7 +31,7 @@ import java.util.ArrayList;
 /**
  * Created by dell on 2015/8/31.
  */
-public class RepairTasking extends Fragment implements UnPatrolLoadListview.ILoadListener{
+public class RepairNotRead extends Fragment implements UnPatrolLoadListview.ILoadListener{
     ArrayList<RepairRows> repairRowses = new ArrayList<>();
     RepairTaskAdapter adapter;
     UnPatrolLoadListview loadListview;
@@ -40,13 +40,11 @@ public class RepairTasking extends Fragment implements UnPatrolLoadListview.ILoa
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         //getData();
-        View view = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_repair_tasking, null);
-        progressBar = (ProgressBar) view.findViewById(R.id.id_repair_bar);
+        View view = LayoutInflater.from(getActivity()).inflate(R.layout.fragemnt_repair_not_read, null);
+        progressBar = (ProgressBar) view.findViewById(R.id.id_repair_not_bar);
         progressBar.setVisibility(View.VISIBLE);
-        loadListview = (UnPatrolLoadListview) view.findViewById(R.id.id_fragment_repair_task_list);
-
+        loadListview = (UnPatrolLoadListview) view.findViewById(R.id.id_fragment_repair_not_list);
         downloadClick();
-
         loadListview.setInterface(this);
         loadListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -80,9 +78,9 @@ public class RepairTasking extends Fragment implements UnPatrolLoadListview.ILoa
 
     public void downloadClick() {
         RequestParams params = new RequestParams();
-        params.put("nodeName","已派工单");
+        params.put("nodeName","待审核工单");
         String url = "http://172.17.192.1:8080/water-repair/repair/listJsonbyNodeName";
-        HttpUtil.get(url, params,new JsonHttpResponseHandler() {
+        HttpUtil.get(url, params, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 // If the response is JSONObject instead of expected JSONArray
@@ -93,15 +91,13 @@ public class RepairTasking extends Fragment implements UnPatrolLoadListview.ILoa
                     repairRowses.add(RepairJson.getRows().get(i));
                 }
                 Log.d("rows", repairRowses.toString());
-                if (adapter == null) {
+                //if (adapter == null) {
                     adapter = new RepairTaskAdapter(getActivity(), repairRowses);
                     //adapter.setHandler(handler_h);
                     loadListview.setAdapter(adapter);
-                } else {
-                    adapter.onDataChange(repairRowses);
-                }
-                loadListview.setVisibility(View.VISIBLE);
-
+                //} else {
+                    //adapter.onDataChange(repairRowses);
+                //}
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -109,6 +105,7 @@ public class RepairTasking extends Fragment implements UnPatrolLoadListview.ILoa
                         progressBar.setVisibility(View.GONE);
                     }
                 }, 500);
+
             }
 
             @Override

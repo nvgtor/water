@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.water.nvgtor.watermanegement.R;
-import com.water.nvgtor.watermanegement.bean.PatrolTaskDetailList;
+import com.water.nvgtor.watermanegement.bean.PatrolPlanPoint;
 
 import java.util.ArrayList;
 
@@ -20,11 +20,11 @@ import java.util.ArrayList;
  */
 public class PatrolTaskDetailListAdapter extends BaseAdapter {
 
-    ArrayList<PatrolTaskDetailList> patrolList = new ArrayList<PatrolTaskDetailList>();
+    ArrayList<PatrolPlanPoint> patrolList = new ArrayList<PatrolPlanPoint>();
     LayoutInflater inflater;
     private Handler handler;
 
-    public PatrolTaskDetailListAdapter(Context context, ArrayList<PatrolTaskDetailList> patrolList){
+    public PatrolTaskDetailListAdapter(Context context, ArrayList<PatrolPlanPoint> patrolList){
         this.patrolList = patrolList;
         this.inflater = LayoutInflater.from(context);
     }
@@ -34,7 +34,7 @@ public class PatrolTaskDetailListAdapter extends BaseAdapter {
         this.handler = handler;
     }
 
-    public void onDataChange(ArrayList<PatrolTaskDetailList> patrolList){
+    public void onDataChange(ArrayList<PatrolPlanPoint> patrolList){
         this.patrolList = patrolList;
         this.notifyDataSetChanged();
     }
@@ -56,25 +56,25 @@ public class PatrolTaskDetailListAdapter extends BaseAdapter {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        PatrolTaskDetailList detailList = patrolList.get(position);
+        PatrolPlanPoint detailList = patrolList.get(position);
         ViewHolder holder;
         if (convertView == null){
             holder = new ViewHolder();
             convertView = inflater.inflate(R.layout.patrol_task_detail_list_item, null);
-            holder.pointID = (TextView)convertView.findViewById(R.id.id_detail_item_ID);
-            holder.pointName = (TextView)convertView.findViewById(R.id.id_detail_item_name);
-            holder.pointaddr = (TextView)convertView.findViewById(R.id.id_detail_item_address);
-            holder.deviceNum = (TextView)convertView.findViewById(R.id.id_detail_item_device_num);
+            holder.tv_lpid = (TextView)convertView.findViewById(R.id.id_detail_ID);
+            holder.tv_name = (TextView)convertView.findViewById(R.id.id_detail_name);
+            holder.tv_deviceNum = (TextView)convertView.findViewById(R.id.id_detail_num);
+            holder.tv_remark = (TextView)convertView.findViewById(R.id.id_detail_remark);
             convertView.setTag(holder);
         }else {
             holder = (ViewHolder)convertView.getTag();
         }
-        holder.pointID.setText(detailList.getPatrolPointID());
-        holder.pointName.setText(detailList.getPatrolPointName());
-        holder.pointaddr.setText(detailList.getPatrolPointAddress());
-        holder.deviceNum.setText(detailList.getDeviceNum()+"个");
+        holder.tv_lpid.setText(detailList.getLpid());
+        holder.tv_name.setText(detailList.getName());
+        holder.tv_deviceNum.setText(detailList.getDeviceNum());
+        holder.tv_remark.setText(detailList.getRemark()+"个");
 
-        holder.btn_start = (Button)convertView.findViewById(R.id.id_detail_item_btn);
+        holder.btn_start = (Button)convertView.findViewById(R.id.id_detail_btn);
         holder.btn_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,10 +89,10 @@ public class PatrolTaskDetailListAdapter extends BaseAdapter {
         return convertView;
     }
     class ViewHolder{
-        TextView pointID;
-        TextView pointName;
-        TextView pointaddr;
-        TextView deviceNum;
+        TextView tv_lpid;
+        TextView tv_name;
+        TextView tv_deviceNum;
+        TextView tv_remark;
         Button btn_start;
     }
 }

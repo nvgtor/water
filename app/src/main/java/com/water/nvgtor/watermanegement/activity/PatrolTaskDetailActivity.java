@@ -8,6 +8,7 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,6 +39,7 @@ public class PatrolTaskDetailActivity extends Activity implements UnPatrolLoadLi
     UnPatrolLoadListview loadListview;
     PatrolDetail patrolDetail;
     private String id;
+    private String patrolMissionID;
 
     private Handler handler;
 
@@ -46,17 +48,20 @@ public class PatrolTaskDetailActivity extends Activity implements UnPatrolLoadLi
     private ImageView patrol_loc;
 
     //detail head view
-    private TextView tv_planID;
-    private TextView tv_manID;
+    private TextView tv_planType;
     private TextView tv_patrolName;
-    private TextView tv_manName;
-    private TextView tv_startTime;
     private TextView tv_dispatchMan;
-    private TextView tv_endTime;
+    private TextView tv_manName;
+    private TextView tv_dispatchTime;
     private TextView tv_frequency;
-    private TextView tv_areaID;
     private TextView tv_areaAddr;
-    private TextView tv_areaPointAddr;
+    private TextView tv_deadline;
+    private TextView tv_startTime;
+    private TextView tv_endTime;
+    private TextView tv_remarker;
+
+    private Button btn_finish;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,9 +77,8 @@ public class PatrolTaskDetailActivity extends Activity implements UnPatrolLoadLi
         //planID.setText(patrolDetails1.getPatrolPlan().getId() + "10");
         initChanged();
 
-        Log.e("patrol point on global", points.toString());
-        getData();
-        showListView(patrolList);
+        //getData();
+
     }
 
     private void initView() {
@@ -82,33 +86,33 @@ public class PatrolTaskDetailActivity extends Activity implements UnPatrolLoadLi
         tv_title = (TextView)findViewById(R.id.id_detail_back_title);
         patrol_loc = (ImageView) findViewById(R.id.id_detail_patrol_loc);
         //detail head
-        tv_planID = (TextView) findViewById(R.id.id_detail_plan_ID_in);
-        tv_manID = (TextView) findViewById(R.id.id_detail_man_ID_in);
-        tv_patrolName = (TextView) findViewById(R.id.id_detail_patrol_name_in);
-        tv_manName = (TextView) findViewById(R.id.id_detail_man_name_in);
-        tv_startTime = (TextView) findViewById(R.id.id_detail_plan_start_time_in);
-        tv_dispatchMan = (TextView) findViewById(R.id.id_detail_dispatch_man_in);
-        tv_endTime = (TextView) findViewById(R.id.id_detail_task_deadline_in);
-        tv_frequency = (TextView) findViewById(R.id.id_detail_patrol_frequency_in);
-        tv_areaID = (TextView) findViewById(R.id.id_detail_area_ID_in);
-        tv_areaAddr = (TextView) findViewById(R.id.id_detail_area_address_in);
-        tv_areaID = (TextView) findViewById(R.id.id_detail_area_ID_in);
-        tv_areaAddr = (TextView) findViewById(R.id.id_detail_area_address_in);
-        tv_areaPointAddr = (TextView) findViewById(R.id.id_detail_area_point_in);
+        tv_planType = (TextView) findViewById(R.id.id_patrol_type_in);
+        tv_patrolName = (TextView) findViewById(R.id.id_patrol_name_in);
+        tv_dispatchMan = (TextView) findViewById(R.id.id_dispatcher_name_in);
+        tv_dispatchTime = (TextView) findViewById(R.id.id_dispatch_time_in);
+        tv_deadline = (TextView) findViewById(R.id.id_time_limit_in);
+        tv_manName = (TextView) findViewById(R.id.id_patroler_name_in);
+        tv_startTime = (TextView) findViewById(R.id.id_start_time_in);
+        tv_endTime = (TextView) findViewById(R.id.id_end_time_in);
+        tv_frequency = (TextView) findViewById(R.id.id_frequency_in);
+        tv_areaAddr = (TextView) findViewById(R.id.id_area_address_in);
+        tv_remarker = (TextView)findViewById(R.id.id_remark_in);
+
+        btn_finish = (Button) findViewById(R.id.id_detail_task_finish);
     }
 
     private void initData(PatrolDetail patrol){
-        tv_planID.setText(patrolDetail.getPatrolPlan().getId());
-        tv_manID.setText(patrolDetail.getPatrolMission().getPersonID());
-        tv_patrolName.setText(patrolDetail.getPatrolPlan().getPidName());
-        tv_manName.setText(patrolDetail.getPatrolMission().getPersonName());
-        tv_startTime.setText(patrolDetail.getPatrolPlan().getStartTime());
-        tv_dispatchMan.setText(patrolDetail.getPatrolPlan().getDispatchingPerson());
-        tv_endTime.setText(patrolDetail.getPatrolPlan().getEndTime());
-        tv_frequency.setText(patrolDetail.getPatrolPlan().getInspectionFrequency());
-        tv_areaID.setText(patrolDetail.getPatrolPlan().getAreaPatrolPointDeviceList().get(0).getRid());
-        tv_areaAddr.setText(patrolDetail.getPatrolPlan().getAreaPatrolPointDeviceList().get(0).getAddress());
-        tv_areaPointAddr.setText(patrolDetail.getPatrolPlan().getAreaPatrolPointDeviceList().get(0).getContour());
+        tv_planType.setText(patrol.getPatrolPlan().getPlanType());
+        tv_patrolName.setText(patrol.getPatrolPlan().getPidName());
+        tv_dispatchMan.setText(patrol.getPatrolPlan().getDispatchingPerson());
+        tv_dispatchTime.setText(patrol.getPatrolPlan().getDispatchTime());
+        tv_deadline.setText(patrol.getPatrolPlan().getTimeLimit()+"");
+        tv_manName.setText(patrol.getPatrolMission().getPersonName());
+        tv_startTime.setText(patrol.getPatrolPlan().getStartTime());
+        tv_endTime.setText(patrol.getPatrolPlan().getEndTime());
+        tv_frequency.setText(patrol.getPatrolPlan().getInspectionFrequency());
+        tv_areaAddr.setText(patrol.getPatrolPlan().getAreaPatrolPointDeviceList().get(0).getAddress());
+        tv_remarker.setText(patrol.getPatrolMission().getRemark());
     }
 
      private void initChanged(){
@@ -150,7 +154,7 @@ public class PatrolTaskDetailActivity extends Activity implements UnPatrolLoadLi
         }
     }
 
-    private void showListView(ArrayList<PatrolTaskDetailList> patrolList){
+    private void showListView(ArrayList<PatrolPlanPoint> patrolList){
         if (adapter == null){
             loadListview = (UnPatrolLoadListview) findViewById(R.id.id_detail_list);
             loadListview.setInterface(this);
@@ -171,7 +175,7 @@ public class PatrolTaskDetailActivity extends Activity implements UnPatrolLoadLi
                 //获取更多数据
                 getLoadData();
                 //更新listview显示
-                showListView(patrolList);
+                showListView(points);
                 //通知listview加载完毕
                 loadListview.loadComplete();
             }
@@ -185,8 +189,15 @@ public class PatrolTaskDetailActivity extends Activity implements UnPatrolLoadLi
             // TODO Auto-generated method stub
             super.handleMessage(msg);
             switch(msg.what){//如果item项目里有多个按钮触发，可以在这里区分
-                case R.id.id_detail_item_btn:
-                    Intent intent = new Intent(PatrolTaskDetailActivity.this, PatrolMapDetailActivity.class);
+                case R.id.id_detail_btn:
+                    Intent intent = new Intent(PatrolTaskDetailActivity.this, PatrolDetailReportActivity.class);
+                    intent.putExtra("position",msg.arg1);
+                    Log.e("msg.arg1",msg.arg1+"");
+                    intent.putExtra("patrolMissionID",patrolDetail.getPatrolMission().getId());
+                    intent.putExtra("pointID",patrolDetail.getPatrolPlan().getAreaPatrolPointDeviceList()
+                                    .get(0).getPatrolPointDeviceList().get(msg.arg1).getLpid());
+                    intent.putExtra("deviceID",patrolDetail.getPatrolPlan().getAreaPatrolPointDeviceList()
+                            .get(0).getPatrolPointDeviceList().get(msg.arg1).getDeviceList().get(0).getDid());
                     startActivity(intent);
                     Toast.makeText(PatrolTaskDetailActivity.this, "你点击了开始" + msg.arg1, Toast.LENGTH_SHORT).show();
                     break;
@@ -195,21 +206,23 @@ public class PatrolTaskDetailActivity extends Activity implements UnPatrolLoadLi
 
     };
 
-    public PatrolDetail downloadClick() {
+    public void downloadClick() {
         RequestParams params = new RequestParams();
         params.put("id",id);
-        Log.e("params", params.toString());
-        String url = "http://172.19.53.1:8080/water-patrol/patrol/patrolMission/editJson";
-        HttpUtil.get(url,params, new JsonHttpResponseHandler() {
+        String url = "http://172.17.192.1:8080/water-patrol/patrol/patrolMission/editJson";
+        HttpUtil.get(url, params, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 // If the response is JSONObject instead of expected JSONArray
                 Gson gson = new Gson();
                 patrolDetail = gson.fromJson(response.toString(), PatrolDetail.class);
                 Log.d("patrol detail", patrolDetail.toString());
+                patrolMissionID = patrolDetail.getPatrolMission().getId();
+                Log.e("patrolMissionID", patrolMissionID);
                 points = (ArrayList<PatrolPlanPoint>) patrolDetail.getPatrolPlan().getAreaPatrolPointDeviceList().get(0).getPatrolPointDeviceList();
                 Log.e("patrol point", points.toString());
                 initData(patrolDetail);
+                showListView(points);
             }
 
             @Override
@@ -218,8 +231,5 @@ public class PatrolTaskDetailActivity extends Activity implements UnPatrolLoadLi
                 Toast.makeText(PatrolTaskDetailActivity.this, "可能未联网，加载失败", Toast.LENGTH_SHORT).show();
             }
         });
-        if (patrolDetail != null){
-            return patrolDetail;
-        }else return null;
     }
 }

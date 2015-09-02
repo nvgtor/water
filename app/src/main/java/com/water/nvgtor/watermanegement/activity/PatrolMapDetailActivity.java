@@ -3,26 +3,9 @@ package com.water.nvgtor.watermanegement.activity;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.AnimationDrawable;
-import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,18 +28,9 @@ import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.model.LatLng;
 import com.water.nvgtor.watermanegement.R;
-import com.water.nvgtor.watermanegement.adapter.RecorderAdapter;
 import com.water.nvgtor.watermanegement.bean.MapPointInfo;
-import com.water.nvgtor.watermanegement.bean.Recorder;
 import com.water.nvgtor.watermanegement.tool.MyOrientationListener;
-import com.water.nvgtor.watermanegement.view.AudioRecorderButton;
-import com.water.nvgtor.watermanegement.view.MyMediaManager;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -86,9 +60,9 @@ public class PatrolMapDetailActivity extends Activity {
 
     //覆盖物相关
     private BitmapDescriptor mMarker;
-    private RelativeLayout mMarkerLy;
+    //private RelativeLayout mMarkerLy;
 
-    //录音相关
+   /* //录音相关
     private ListView mListView;
     private ArrayAdapter<Recorder> mAdapter;
     private List<Recorder> mDatas = new ArrayList<Recorder>();
@@ -103,7 +77,7 @@ public class PatrolMapDetailActivity extends Activity {
     private ImageView img1;
     private ImageView img2;
     private ImageView img3;
-    private ImageView img4;
+    private ImageView img4;*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,7 +107,7 @@ public class PatrolMapDetailActivity extends Activity {
         initMarker();
 
         //拍照事件监听
-        takePhoto();
+        //takePhoto();
 
 
         mBaiduMap.setOnMarkerClickListener(new BaiduMap.OnMarkerClickListener() {
@@ -162,7 +136,7 @@ public class PatrolMapDetailActivity extends Activity {
                 tv_remark.setText(info.getDeviceRemark());
 
 
-                mMarkerLy.setVisibility(View.VISIBLE);
+                //mMarkerLy.setVisibility(View.VISIBLE);
 
                 return true;
             }
@@ -170,7 +144,7 @@ public class PatrolMapDetailActivity extends Activity {
         mBaiduMap.setOnMapClickListener(new BaiduMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
-                mMarkerLy.setVisibility(View.GONE);
+                //mMarkerLy.setVisibility(View.GONE);
                 mBaiduMap.hideInfoWindow();
             }
 
@@ -180,16 +154,16 @@ public class PatrolMapDetailActivity extends Activity {
             }
         });
 
-        mMarkerLy.setOnClickListener(new View.OnClickListener() {
+        /*mMarkerLy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
             }
-        });
+        });*/
 
 
-        mListView = (ListView) findViewById(R.id.id_device_recorder_list);
+        /*mListView = (ListView) findViewById(R.id.id_device_recorder_list);
         mAudioRecorderButton = (AudioRecorderButton) findViewById(R.id.id_map_device_microphone);
         mAudioRecorderButton.setAudioFinishRecorderListener(new AudioRecorderButton.AudioFinishRecorderListener() {
             @Override
@@ -227,13 +201,13 @@ public class PatrolMapDetailActivity extends Activity {
                 });
             }
         });
-
+*/
     }
 
     private void initMarker()
     {
         mMarker = BitmapDescriptorFactory.fromResource(R.drawable.track_map_icon);
-        mMarkerLy = (RelativeLayout) findViewById(R.id.id_map_marker_detail);
+        //mMarkerLy = (RelativeLayout) findViewById(R.id.id_map_marker_detail);
     }
 
     private void initLocation(){
@@ -270,16 +244,16 @@ public class PatrolMapDetailActivity extends Activity {
         MapStatusUpdate msu = MapStatusUpdateFactory.zoomTo(15.0f);
         mBaiduMap.setMapStatus(msu);
 
-        btnCamera = (Button)findViewById(R.id.id_map_device_camera);
+        /*btnCamera = (Button)findViewById(R.id.id_map_device_camera);
         btnGallery = (Button) findViewById(R.id.id_map_device_gallery);
         img1 = (ImageView) findViewById(R.id.id_map_img_add_1);
         img2 = (ImageView) findViewById(R.id.id_map_img_add_2);
         img3 = (ImageView) findViewById(R.id.id_map_img_add_3);
-        img4 = (ImageView) findViewById(R.id.id_map_img_add_4);
+        img4 = (ImageView) findViewById(R.id.id_map_img_add_4);*/
 
     }
 
-    private void takePhoto(){
+    /*private void takePhoto(){
         btnCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -296,7 +270,7 @@ public class PatrolMapDetailActivity extends Activity {
                 Intent intent = new Intent(
                         Intent.ACTION_PICK,
                         android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                intent.setType("image/*");
+                intent.setType("image*//*");
                 startActivityForResult(
                         Intent.createChooser(intent, "Select File"),
                         SELECT_FILE);
@@ -352,9 +326,9 @@ public class PatrolMapDetailActivity extends Activity {
         }
 
 
-    }
+    }*/
 
-    @SuppressWarnings("deprecation")
+    /*@SuppressWarnings("deprecation")
     private void onSelectFromGalleryResult(Intent data) {
         Uri selectedImageUri = data.getData();
         String[] projection = { MediaStore.MediaColumns.DATA };
@@ -393,7 +367,7 @@ public class PatrolMapDetailActivity extends Activity {
         }else{
             Toast.makeText(PatrolMapDetailActivity.this, "照片已满",Toast.LENGTH_SHORT).show();
         }
-    }
+    }*/
 
     @Override
     protected void onDestroy() {

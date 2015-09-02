@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="40dp">
+              android:layout_height="40dp"
+              android:id="@+id/id_back_rl">
     <!-- head-->
     <RelativeLayout
         android:layout_width="match_parent"
@@ -26,13 +27,6 @@
                 android:scaleType="fitXY"
                 android:layout_gravity="center_vertical"
                 android:src="@drawable/browser_back_dn"/>
-            <!--<TextView
-                android:id="@+id/id_detail_back_text"
-                android:layout_width="wrap_content"
-                android:gravity="center"
-                android:textColor="@color/white"
-                android:text="返回"
-                android:layout_height="50dp"/>-->
         </LinearLayout>
 
         <LinearLayout

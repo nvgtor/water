@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.water.nvgtor.watermanegement.R;
 import com.water.nvgtor.watermanegement.fragment.RepairTasking;
+import com.water.nvgtor.watermanegement.fragment.RepairedTasking;
 import com.water.nvgtor.watermanegement.view.ChangeColorIconWithTextView;
 
 import java.lang.reflect.Method;
@@ -49,6 +50,7 @@ public class RepairModelActivity extends FragmentActivity implements
 
         mViewPager.setAdapter(mAdapter);
         mViewPager.setOnPageChangeListener(this);
+
         img_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,16 +61,12 @@ public class RepairModelActivity extends FragmentActivity implements
 
     private void initDatas()
     {
-        RepairTasking repairTasking = new RepairTasking();
-        mTabs.add(repairTasking);
-        RepairTasking repairTasking1 = new RepairTasking();
-        mTabs.add(repairTasking1);
-        RepairTasking repairTasking2 = new RepairTasking();
-        mTabs.add(repairTasking2);
+        mTabs.add(new RepairTasking());
+        mTabs.add(new RepairedTasking());
+        //mTabs.add(new RepairNotRead());
 
         mAdapter = new FragmentPagerAdapter(getSupportFragmentManager())
         {
-
             @Override
             public int getCount()
             {
@@ -83,7 +81,6 @@ public class RepairModelActivity extends FragmentActivity implements
         };
 
         initTabIndicator();
-
     }
 
     @Override
@@ -97,15 +94,15 @@ public class RepairModelActivity extends FragmentActivity implements
     {
         ChangeColorIconWithTextView one = (ChangeColorIconWithTextView) findViewById(R.id.id_repair_one);
         ChangeColorIconWithTextView two = (ChangeColorIconWithTextView) findViewById(R.id.id_repair_two);
-        ChangeColorIconWithTextView three = (ChangeColorIconWithTextView) findViewById(R.id.id_repair_three);
+        //ChangeColorIconWithTextView three = (ChangeColorIconWithTextView) findViewById(R.id.id_repair_three);
 
         mTabIndicator.add(one);
         mTabIndicator.add(two);
-        mTabIndicator.add(three);
+        //mTabIndicator.add(three);
 
         one.setOnClickListener(this);
         two.setOnClickListener(this);
-        three.setOnClickListener(this);
+        //three.setOnClickListener(this);
 
         one.setIconAlpha(1.0f);
     }
@@ -130,7 +127,6 @@ public class RepairModelActivity extends FragmentActivity implements
             left.setIconAlpha(1 - positionOffset);
             right.setIconAlpha(positionOffset);
         }
-
     }
 
     @Override
@@ -142,7 +138,6 @@ public class RepairModelActivity extends FragmentActivity implements
     @Override
     public void onClick(View v)
     {
-
         resetOtherTabs();
 
         switch (v.getId())
@@ -155,10 +150,10 @@ public class RepairModelActivity extends FragmentActivity implements
                 mTabIndicator.get(1).setIconAlpha(1.0f);
                 mViewPager.setCurrentItem(1, false);
                 break;
-            case R.id.id_repair_three:
+           /* case R.id.id_repair_three:
                 mTabIndicator.get(2).setIconAlpha(1.0f);
                 mViewPager.setCurrentItem(2, false);
-                break;
+                break;*/
         }
 
     }

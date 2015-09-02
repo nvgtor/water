@@ -77,7 +77,8 @@ public class MainActivity extends FragmentActivity{
                         startActivity(intent4);
                         break;
                     case 5:
-                        Toast.makeText(MainActivity.this, "通讯录" , Toast.LENGTH_SHORT).show();
+                        Intent intent5 = new Intent(MainActivity.this, PhoneAddrActivity.class);
+                        startActivity(intent5);
                         break;
                     case 6:
                         Toast.makeText(MainActivity.this, "系统设置" , Toast.LENGTH_SHORT).show();

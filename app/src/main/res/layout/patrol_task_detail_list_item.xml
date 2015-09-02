@@ -5,12 +5,12 @@
                 android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="60dp"
         android:orientation="horizontal"
         android:background="#FFFFFF">
         <TextView
-            android:id="@+id/id_detail_item_ID"
-            android:layout_width="70dp"
+            android:id="@+id/id_detail_ID"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
@@ -22,30 +22,30 @@
             android:layout_marginStart="16dp"
             />
         <TextView
-            android:id="@+id/id_detail_item_name"
-            android:layout_width="70dp"
+            android:id="@+id/id_detail_name"
+            android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
             android:layout_gravity="center"
             android:textSize="12sp"
             android:textColor="#000000"
-            android:text="A巡检点"
+            android:text="天津市南开区体育中心街水上东路流量计巡检"
             />
         <TextView
-            android:id="@+id/id_detail_item_address"
-            android:layout_width="70dp"
+            android:id="@+id/id_detail_num"
+            android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
             android:layout_gravity="center"
             android:textSize="12sp"
             android:textColor="#000000"
-            android:text="滨海高新区总部基地二区高新七路距海油大道20m"
+            android:text="4个"
 
             />
         <TextView
-            android:id="@+id/id_detail_item_device_num"
+            android:id="@+id/id_detail_remark"
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -53,11 +53,11 @@
             android:layout_gravity="center"
             android:textSize="12sp"
             android:textColor="#000000"
-            android:text="4"
+            android:text="我是备注"
             />
         <Button
-            android:id="@+id/id_detail_item_btn"
-            android:layout_width="70dp"
+            android:id="@+id/id_detail_btn"
+            android:layout_width="50dp"
             android:layout_height="20dp"
             android:background="@drawable/btn_detail_start"
             android:layout_weight="1"

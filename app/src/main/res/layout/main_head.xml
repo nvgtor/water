@@ -16,7 +16,7 @@
             android:layout_gravity="center_vertical"
             android:background="@drawable/bg_head_normal"
             android:padding="2.0dip"
-            android:src="@drawable/default_round_head"
+            android:src="@drawable/man_head"
             android:scaleType="fitXY"
             android:visibility="visible"/>
     </FrameLayout>

@@ -5,12 +5,12 @@
               android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="60dp"
         android:orientation="horizontal"
         android:background="#FFFFFF">
         <TextView
             android:id="@+id/id_patroled_item_ID"
-            android:layout_width="70dp"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
@@ -18,34 +18,34 @@
             android:textSize="12sp"
             android:textColor="#000000"
             android:text="Ak0183"
-            android:layout_marginLeft="16dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginStart="4dp"
             />
         <TextView
             android:id="@+id/id_patroled_item_name"
-            android:layout_width="70dp"
+            android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
             android:layout_gravity="center"
             android:textSize="12sp"
             android:textColor="#000000"
-            android:text="A巡检点"
+            android:text="天津市南开区体育中心街水上东路流量计巡检"
             />
         <TextView
-            android:id="@+id/id_patroled_item_address"
-            android:layout_width="70dp"
+            android:id="@+id/id_patroled_item_num"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
             android:layout_gravity="center"
-            android:textSize="9sp"
+            android:textSize="12sp"
             android:textColor="#000000"
-            android:text="滨海高新区总部基地二区高新七路距海油大道20m"
+            android:text="3个"
 
             />
         <TextView
-            android:id="@+id/id_patroled_item_device_num"
+            android:id="@+id/id_patroled_item_remark"
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -53,7 +53,7 @@
             android:layout_gravity="center"
             android:textSize="12sp"
             android:textColor="#000000"
-            android:text="4"
+            android:text="我是备注"
             />
         <Button
             android:id="@+id/id_patroled_item_btn_1"
@@ -66,8 +66,8 @@
             android:textSize="10sp"
             android:textColor="#000000"
             android:text="查看"
-            android:layout_marginRight="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginEnd="4dp"
             />
     </LinearLayout>
 

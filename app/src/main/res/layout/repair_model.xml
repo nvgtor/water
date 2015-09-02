@@ -38,7 +38,7 @@
             zhy:icon="@drawable/tab_patroled"
             zhy:text="已审核工单"
             zhy:text_size="12sp" />
-        <com.water.nvgtor.watermanegement.view.ChangeColorIconWithTextView
+        <!--<com.water.nvgtor.watermanegement.view.ChangeColorIconWithTextView
             android:id="@+id/id_repair_three"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
@@ -46,7 +46,7 @@
             android:padding="5dp"
             zhy:icon="@drawable/tab_three"
             zhy:text="待审核工单"
-            zhy:text_size="12sp" />
+            zhy:text_size="12sp" />-->
     </LinearLayout>
 
 </LinearLayout>

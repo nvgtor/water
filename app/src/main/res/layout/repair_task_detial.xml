@@ -1,23 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
     <include layout="@layout/back_head_for_patrol"/>
 
-    <RelativeLayout
-        android:id="@+id/id_map_marker_detail"
+    <View
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="2dp"
+        android:background="#fff"/>
+
+    <RelativeLayout
+        android:id="@+id/id_repair_detail_rl"
+        android:layout_width="match_parent"
         android:background="#eee"
-        android:layout_below="@id/id_back_rl"
+        android:layout_height="wrap_content"
         android:clickable="true"
         android:visibility="visible">
 
         <!-- detail-->
         <RelativeLayout
-            android:id="@+id/id_map_device_detail_top"
+            android:id="@+id/id_repair_detail_top"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
@@ -27,7 +31,7 @@
             android:padding="5dp"
             android:background="#eee">
             <TextView
-                android:id="@+id/id_map_device_ID"
+                android:id="@+id/id_repair_detail_ID"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
@@ -35,21 +39,21 @@
                 android:text="设备ID: "
                 android:textSize="12sp"/>
             <TextView
-                android:id="@+id/id_map_device_ID_in"
+                android:id="@+id/id_repair_detail_ID_in"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/id_map_device_ID"
+                android:layout_toRightOf="@+id/id_repair_detail_ID"
                 android:text="001"
                 android:textSize="14sp"/>
             <TextView
-                android:id="@+id/id_map_device_name"
+                android:id="@+id/id_repair_detail_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toLeftOf="@+id/id_map_device_name_in"
+                android:layout_toLeftOf="@+id/id_repair_detail_name_in"
                 android:text="设备名称: "
                 android:textSize="12sp"/>
             <TextView
-                android:id="@+id/id_map_device_name_in"
+                android:id="@+id/id_repair_detail_name_in"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -57,177 +61,146 @@
                 android:text="水表0"
                 android:textSize="12sp"/>
             <TextView
-                android:id="@+id/id_map_device_type"
+                android:id="@+id/id_repair_detail_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
-                android:layout_below="@+id/id_map_device_ID"
+                android:layout_below="@+id/id_repair_detail_ID"
                 android:text="设备类型: "
                 android:textSize="12sp"/>
             <TextView
-                android:id="@+id/id_map_device_type_in"
+                android:id="@+id/id_repair_detail_type_in"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/id_map_device_ID_in"
-                android:layout_toRightOf="@+id/id_map_device_type"
+                android:layout_below="@+id/id_repair_detail_ID_in"
+                android:layout_toRightOf="@+id/id_repair_detail_type"
                 android:text="水表"
                 android:textSize="12sp"/>
             <TextView
-                android:id="@+id/id_map_device_repair"
+                android:id="@+id/id_repair_detail_repair"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/id_map_device_name"
-                android:layout_toLeftOf="@+id/id_map_device_repair_in"
+                android:layout_below="@+id/id_repair_detail_name"
+                android:layout_toLeftOf="@+id/id_repair_detail_repair_in"
                 android:text="维护项目: "
                 android:textSize="12sp"/>
             <TextView
-                android:id="@+id/id_map_device_repair_in"
+                android:id="@+id/id_repair_detail_repair_in"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/id_map_device_name"
+                android:layout_below="@+id/id_repair_detail_name"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:text="表针"
                 android:textSize="12sp"/>
             <TextView
-                android:id="@+id/id_map_device_longitude"
+                android:id="@+id/id_repair_detail_longitude"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/id_map_device_type"
+                android:layout_below="@id/id_repair_detail_type"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:text="经度: "
                 android:textSize="12sp"/>
             <TextView
-                android:id="@+id/id_map_device_longitude_in"
+                android:id="@+id/id_repair_detail_longitude_in"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/id_map_device_type"
-                android:layout_toRightOf="@+id/id_map_device_longitude"
+                android:layout_below="@+id/id_repair_detail_type"
+                android:layout_toRightOf="@+id/id_repair_detail_longitude"
                 android:text="117.533359"
                 android:textSize="12sp"/>
             <TextView
-                android:id="@+id/id_map_device_latitude"
+                android:id="@+id/id_repair_detail_latitude"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/id_map_device_repair"
-                android:layout_toLeftOf="@+id/id_map_device_latitude_in"
+                android:layout_below="@+id/id_repair_detail_repair"
+                android:layout_toLeftOf="@+id/id_repair_detail_latitude_in"
                 android:text="纬度: "
                 android:textSize="12sp"/>
             <TextView
-                android:id="@+id/id_map_device_latitude_in"
+                android:id="@+id/id_repair_detail_latitude_in"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/id_map_device_repair_in"
+                android:layout_below="@+id/id_repair_detail_repair_in"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:text="39.125493"
                 android:textSize="12sp"/>
             <TextView
-                android:id="@+id/id_map_device_project"
+                android:id="@+id/id_repair_detail_project"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/id_map_device_longitude"
+                android:layout_below="@id/id_repair_detail_longitude"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:text="所在工程: "
                 android:textSize="12sp"/>
             <TextView
-                android:id="@+id/id_map_device_project_in"
+                android:id="@+id/id_repair_detail_project_in"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/id_map_device_longitude"
-                android:layout_toRightOf="@+id/id_map_device_project"
+                android:layout_below="@+id/id_repair_detail_longitude"
+                android:layout_toRightOf="@+id/id_repair_detail_project"
                 android:text="911"
                 android:textSize="12sp"/>
             <TextView
-                android:id="@+id/id_map_device_address"
+                android:id="@+id/id_repair_detail_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/id_map_device_project"
+                android:layout_below="@id/id_repair_detail_project"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:text="地址: "
                 android:textSize="12sp"/>
             <TextView
-                android:id="@+id/id_map_device_address_in"
+                android:id="@+id/id_repair_detail_address_in"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/id_map_device_project"
-                android:layout_toRightOf="@+id/id_map_device_address"
+                android:layout_below="@+id/id_repair_detail_project"
+                android:layout_toRightOf="@+id/id_repair_detail_address"
                 android:text="天河大道"
                 android:textSize="12sp"/>
             <TextView
-                android:id="@+id/id_map_device_remark"
+                android:id="@+id/id_repair_detail_remark"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/id_map_device_address"
+                android:layout_below="@id/id_repair_detail_address"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:text="备注: "
                 android:textSize="12sp"/>
             <TextView
-                android:id="@+id/id_map_device_remark_in"
+                android:id="@+id/id_repair_detail_remark_in"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/id_map_device_address"
-                android:layout_toRightOf="@+id/id_map_device_remark"
+                android:layout_below="@+id/id_repair_detail_address"
+                android:layout_toRightOf="@+id/id_repair_detail_remark"
                 android:text="放马过来"
                 android:textSize="12sp"/>
         </RelativeLayout>
 
         <View
-            android:id="@+id/line_0"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_below="@+id/id_map_device_detail_top"
-            android:background="#ccc"/>
-
-        <LinearLayout
-            android:id="@+id/id_map_device_checkLY"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_below="@+id/line_0">
-            <CheckBox
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginLeft="50dp"
-                android:text="设备正常"
-                android:textSize="14sp"/>
-            <CheckBox
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginRight="50dp"
-                android:text="设备异常"
-                android:textSize="14sp"/>
-        </LinearLayout>
-
-        <View
             android:id="@+id/line_below_ly"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_below="@+id/id_map_device_checkLY"
+            android:layout_below="@+id/id_repair_detail_top"
             android:background="#ccc"/>
 
         <!-- Exception Report -->
         <RelativeLayout
-            android:id="@+id/id_map_device_frame"
+            android:id="@+id/id_repair_detail_frame"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginEnd="5dp"
+            android:layout_below="@id/line_below_ly"
             android:background="@drawable/bg_frame"
-            android:layout_below="@+id/line_below_ly">
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true">
 
             <RelativeLayout
-                android:id="@+id/id_map_device_mid"
+                android:id="@+id/id_repair_detail_mid"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:focusable="true"
@@ -239,7 +212,7 @@
                 android:layout_marginEnd="5dp">
 
                 <EditText
-                    android:id="@+id/id_map_device_report_title"
+                    android:id="@+id/id_repair_detail_report_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="0dp"
@@ -252,7 +225,7 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/id_map_device_report_title"
+                    android:layout_below="@+id/id_repair_detail_report_title"
                     android:hint="（必填）我是异常呀，我竟然是异常，我哪里有问题，我是异常呀我是异常呀我是异常呀我是异常呀"
                     android:minLines="2"
                     android:gravity="top"
@@ -261,15 +234,15 @@
             </RelativeLayout>
 
             <LinearLayout
-                android:id="@+id/id_map_device_imgRecorder"
+                android:id="@+id/id_repair_detail_imgRecorder"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
-                android:layout_below="@+id/id_map_device_mid"
+                android:layout_below="@+id/id_repair_detail_mid"
                 android:orientation="horizontal">
                 <LinearLayout
-                    android:id="@+id/id_map_device_photo"
+                    android:id="@+id/id_repair_detail_photo"
                     android:layout_width="240dp"
-                    android:layout_height="100dp"
+                    android:layout_height="70dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginStart="5dp"
                     android:layout_marginRight="5dp"
@@ -279,31 +252,31 @@
                     <ImageView
                         android:id="@+id/id_map_img_add_1"
                         android:layout_width="0dp"
-                        android:layout_height="100dp"
+                        android:layout_height="70dp"
                         android:layout_weight="1"
                         android:scaleType="fitXY"
-                        />
+                        android:src="@drawable/device_img_1"/>
                     <ImageView
                         android:id="@+id/id_map_img_add_2"
                         android:layout_width="0dp"
-                        android:layout_height="100dp"
+                        android:layout_height="70dp"
                         android:layout_weight="1"
                         android:scaleType="fitXY"
-                        />
+                        android:src="@drawable/device_img_2"/>
                     <ImageView
                         android:id="@+id/id_map_img_add_3"
                         android:layout_width="0dp"
-                        android:layout_height="100dp"
+                        android:layout_height="70dp"
                         android:layout_weight="1"
                         android:scaleType="fitXY"
-                        />
+                        android:src="@drawable/device_img_1"/>
                     <ImageView
                         android:id="@+id/id_map_img_add_4"
                         android:layout_width="0dp"
                         android:layout_height="70dp"
                         android:layout_weight="1"
                         android:scaleType="fitXY"
-                        />
+                        android:src="@drawable/device_img_2"/>
                 </LinearLayout>
 
                 <ListView
@@ -315,20 +288,20 @@
                     android:dividerHeight="10dp"
                     android:listSelector="#00000000"
                     android:cacheColorHint="#00000000"/>
-                </LinearLayout>
+            </LinearLayout>
 
             <View
-                android:id="@+id/id_map_device_line_2"
+                android:id="@+id/id_repair_detail_line_2"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:layout_below="@+id/id_map_device_imgRecorder"
+                android:layout_below="@+id/id_repair_detail_imgRecorder"
                 android:background="#ccc"/>
 
             <LinearLayout
-                android:id="@+id/id_map_device_photo_recorder"
+                android:id="@+id/id_repair_detail_photo_recorder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/id_map_device_line_2"
+                android:layout_below="@+id/id_repair_detail_line_2"
                 android:orientation="horizontal">
                 <RelativeLayout
                     android:layout_width="wrap_content"
@@ -337,18 +310,18 @@
                     android:clickable="true"
                     android:layout_weight="1">
                     <Button
-                        android:id="@+id/id_map_device_camera"
+                        android:id="@+id/id_repair_detail_camera"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:layout_marginTop="4dp"
                         android:background="@drawable/btn_pb_add_camera"/>
                     <TextView
-                        android:id="@+id/id_map_device_tv_camera"
+                        android:id="@+id/id_repair_detail_tv_camera"
                         android:layout_width="60dp"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:layout_marginTop="3dp"
-                        android:layout_below="@+id/id_map_device_camera"
+                        android:layout_below="@+id/id_repair_detail_camera"
                         android:text="拍照"
                         android:textSize="14sp"/>
                 </RelativeLayout>
@@ -360,18 +333,18 @@
                     android:clickable="true"
                     android:layout_weight="1">
                     <Button
-                        android:id="@+id/id_map_device_gallery"
+                        android:id="@+id/id_repair_detail_gallery"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:layout_marginTop="4dp"
                         android:background="@drawable/btn_pb_add_pic"/>
                     <TextView
-                        android:id="@+id/id_map_device_tv_gallery"
+                        android:id="@+id/id_repair_detail_tv_gallery"
                         android:layout_width="60dp"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:layout_marginTop="3dp"
-                        android:layout_below="@+id/id_map_device_gallery"
+                        android:layout_below="@+id/id_repair_detail_gallery"
                         android:text="相册"
                         android:textSize="14sp"/>
                 </RelativeLayout>
@@ -383,51 +356,64 @@
                     android:clickable="true"
                     android:layout_weight="1">
                     <com.water.nvgtor.watermanegement.view.AudioRecorderButton
-                        android:id="@+id/id_map_device_microphone"
+                        android:id="@+id/id_repair_detail_microphone"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:layout_marginTop="4dp"
                         android:background="@drawable/btn_pb_add_microphone"/>
                     <TextView
-                        android:id="@+id/id_map_device_tv_recorder"
+                        android:id="@+id/id_repair_detail_tv_recorder"
                         android:layout_width="60dp"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:layout_marginTop="3dp"
-                        android:layout_below="@+id/id_map_device_microphone"
+                        android:layout_below="@+id/id_repair_detail_microphone"
                         android:text="录音"
                         android:textSize="14sp"/>
                 </RelativeLayout>
             </LinearLayout>
 
             <View
-                android:id="@+id/id_map_device_line_3"
+                android:id="@+id/id_repair_detail_line_3"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_marginTop="5dp"
-                android:layout_below="@+id/id_map_device_photo_recorder"
+                android:layout_below="@+id/id_repair_detail_photo_recorder"
                 android:background="#ccc"/>
 
             <LinearLayout
-                android:id="@+id/id_map_device_btm_ly"
+                android:id="@+id/id_repair_btn3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_below="@+id/id_map_device_line_3">
+                android:layout_below="@id/id_repair_detail_line_3"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginEnd="30dp"
+                android:background="#eee">
                 <Button
-                    android:id="@+id/id_map_device_finish"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginRight="50dp"
-                    android:layout_marginTop="6dp"
-                    android:layout_marginBottom="7dp"
-                    android:gravity="center"
-                    android:padding="5dp"
-                    android:text="完成该设备巡检"
-                    android:textColor="#727272"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
                     android:background="@drawable/button_recorder_normal"
-                    android:minHeight="0dp"/>
+                    android:textSize="12sp"
+                    android:layout_weight="1"
+                    android:text="接受任务"/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:background="@drawable/button_recorder_normal"
+                    android:layout_weight="1"
+                    android:textSize="12sp"
+                    android:text="申请延期"/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:background="@drawable/button_recorder_normal"
+                    android:layout_weight="1"
+                    android:textSize="12sp"
+                    android:text="申请消单"/>
 
             </LinearLayout>
 
@@ -435,5 +421,5 @@
 
     </RelativeLayout>
 
-</RelativeLayout>
+</LinearLayout>
 

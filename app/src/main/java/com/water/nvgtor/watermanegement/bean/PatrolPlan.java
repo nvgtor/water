@@ -15,9 +15,12 @@ public class PatrolPlan {
     private String startTime;//巡检计划开始时间
     private String endTime;//巡检计划结束时间
     private String dispatchingPerson;//指派人
+    private String dispatchTime;//指派时间
     private String remark;//备注
     //巡检计划下的区域
     private List<PatrolPlanArea> areaPatrolPointDeviceList;
+    private List<PatrolPlanPoint> patrolPointDeviceList;//巡检计划下的巡检点
+    private List<PatrolPlanDevice> deviceInformationList;//巡检计划下面的设备
 
     public String getId() {
         return id;
@@ -83,6 +86,14 @@ public class PatrolPlan {
         this.dispatchingPerson = dispatchingPerson;
     }
 
+    public String getDispatchTime() {
+        return dispatchTime;
+    }
+
+    public void setDispatchTime(String dispatchTime) {
+        this.dispatchTime = dispatchTime;
+    }
+
     public String getRemark() {
         return remark;
     }
@@ -99,6 +110,22 @@ public class PatrolPlan {
         this.areaPatrolPointDeviceList = areaPatrolPointDeviceList;
     }
 
+    public List<PatrolPlanPoint> getPatrolPointDeviceList() {
+        return patrolPointDeviceList;
+    }
+
+    public void setPatrolPointDeviceList(List<PatrolPlanPoint> patrolPointDeviceList) {
+        this.patrolPointDeviceList = patrolPointDeviceList;
+    }
+
+    public List<PatrolPlanDevice> getDeviceInformationList() {
+        return deviceInformationList;
+    }
+
+    public void setDeviceInformationList(List<PatrolPlanDevice> deviceInformationList) {
+        this.deviceInformationList = deviceInformationList;
+    }
+
     @Override
     public String toString() {
         return "PatrolPlan{" +
@@ -110,9 +137,11 @@ public class PatrolPlan {
                 ", startTime='" + startTime + '\'' +
                 ", endTime='" + endTime + '\'' +
                 ", dispatchingPerson='" + dispatchingPerson + '\'' +
+                ", dispatchTime='" + dispatchTime + '\'' +
                 ", remark='" + remark + '\'' +
                 ", areaPatrolPointDeviceList=" + areaPatrolPointDeviceList +
+                ", patrolPointDeviceList=" + patrolPointDeviceList +
+                ", deviceInformationList=" + deviceInformationList +
                 '}';
     }
-
 }

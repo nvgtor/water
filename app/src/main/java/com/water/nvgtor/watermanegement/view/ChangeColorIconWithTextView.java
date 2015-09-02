@@ -171,10 +171,6 @@ public class ChangeColorIconWithTextView extends View
 		
 	}
 
-	
-
-	
-
 	public void setIconAlpha(float alpha)
 	{
 		this.mAlpha = alpha;
