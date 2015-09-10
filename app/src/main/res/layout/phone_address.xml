@@ -13,23 +13,13 @@
         android:orientation="horizontal"
         android:background="#C0C0C0">
         <TextView
-            android:id="@+id/id_phone_addr_1"
-            android:layout_width="70dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="14sp"
-            android:text="序"
-            android:layout_marginLeft="4dp"
-            android:layout_marginStart="4dp"/>
-        <TextView
             android:id="@+id/id_phone_addr_2"
             android:layout_width="100dp"
             android:layout_height="30dp"
             android:layout_weight="1"
             android:gravity="center"
             android:textSize="14sp"
-            android:text="姓名"/>
+            android:text="部门名字"/>
         <TextView
             android:id="@+id/id_phone_addr_3"
             android:layout_width="100dp"
@@ -37,15 +27,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:textSize="14sp"
-            android:text="手机"/>
-        <TextView
-            android:id="@+id/id_phone_addr_4"
-            android:layout_width="100dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="14sp"
-            android:text="职务"/>
+            android:text="部门电话"/>
     </LinearLayout>
 
     <View

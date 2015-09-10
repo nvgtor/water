@@ -28,7 +28,7 @@ public class LoginActivity extends Activity {
     private EditText password;
     private Button btn_login;
     private CheckBox rem_pw,auto_login;
-    private TextView tv_register,tv_forgetPw;
+    private TextView tv_forgetPw;
     private String userNameValue,passwordValue;
     private SharedPreferences sp;
 
@@ -46,7 +46,6 @@ public class LoginActivity extends Activity {
         auto_login = (CheckBox)findViewById(R.id.login_checkBox_autoLogin);
         btn_login = (Button)findViewById(R.id.login_button);
         tv_forgetPw = (TextView)findViewById(R.id.login_forgetPw);
-        tv_register = (TextView)findViewById(R.id.login_register);
 
         //判断记住密码多选框的状态
         if (sp.getBoolean("ISCHECK",false)){
@@ -60,6 +59,7 @@ public class LoginActivity extends Activity {
                 auto_login.setChecked(true);
                 //跳转界面
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                intent.putExtra("userName", sp.getString("USER_NAME",""));
                 LoginActivity.this.startActivity(intent);
             }
         }
@@ -82,6 +82,7 @@ public class LoginActivity extends Activity {
                     }
                     //跳转界面
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    intent.putExtra("userName", userNameValue);
                     LoginActivity.this.startActivity(intent);
                     overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                     //overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
@@ -127,16 +128,6 @@ public class LoginActivity extends Activity {
                 LoginActivity.this.startActivity(intent);
             }
         });
-
-        //注册账号监听事件
-        tv_register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(LoginActivity.this, RegisterUsePhoneActivity.class);
-                LoginActivity.this.startActivity(i);
-            }
-        });
-
     }
 }
 

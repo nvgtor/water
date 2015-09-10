@@ -11,6 +11,7 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -23,14 +24,20 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.water.nvgtor.watermanegement.R;
 import com.water.nvgtor.watermanegement.adapter.RecorderAdapter;
+import com.water.nvgtor.watermanegement.bean.PostFile;
+import com.water.nvgtor.watermanegement.bean.PostFileReturn;
 import com.water.nvgtor.watermanegement.bean.Recorder;
+import com.water.nvgtor.watermanegement.tool.AsycHttpUtil;
+import com.water.nvgtor.watermanegement.tool.HttpCallBackListener;
 import com.water.nvgtor.watermanegement.tool.HttpUtil;
 import com.water.nvgtor.watermanegement.view.AudioRecorderButton;
 import com.water.nvgtor.watermanegement.view.MyMediaManager;
@@ -44,8 +51,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 
 /**
@@ -80,6 +87,7 @@ public class IncidentReportActivity extends Activity {
     private ImageView rImg;
 
     private LinearLayout incidentLayout;
+    private ProgressBar progressBar;
 
     //上传参数
     private ArrayList<String> photoUrl = new ArrayList<>();
@@ -87,6 +95,10 @@ public class IncidentReportActivity extends Activity {
     private String reflectPeople;
     private String reflectContent;
     private String acceptTime;
+    //上传附件
+    private ArrayList<PostFile> imageList = new ArrayList<>();
+    private ArrayList<PostFile> VoiceList = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,6 +121,9 @@ public class IncidentReportActivity extends Activity {
         rImg = (ImageView)findViewById(R.id.id_detail_patrol_loc);
         title.setText("事件上报");
         rImg.setVisibility(View.GONE);
+
+        progressBar = (ProgressBar) findViewById(R.id.id_incident_bar);
+        progressBar.setVisibility(View.GONE);
 
         addr = (EditText) findViewById(R.id.id_incident_report_address);
         man = (EditText) findViewById(R.id.id_incident_report_man);
@@ -138,7 +153,7 @@ public class IncidentReportActivity extends Activity {
         incidentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
             }
         });
@@ -148,40 +163,107 @@ public class IncidentReportActivity extends Activity {
             public void onClick(View v) {
                 Toast.makeText(IncidentReportActivity.this, "提交", Toast.LENGTH_SHORT).show();
                 Log.e("photoUrl", photoUrl.toString());
-                postData();
+                progressBar.setVisibility(View.VISIBLE);
+                getReturnUrl();
+                getRecorder();
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Log.e("imageList", imageList.toString());
+                        postData();
+                        progressBar.setVisibility(View.GONE);
+                    }
+                }, 8000);
             }
         });
     }
 
     private void postData(){
-        SimpleDateFormat formatter   =   new   SimpleDateFormat   ("yyyy年MM月dd日   HH:mm:ss     ");
-        Date   curDate   =   new   Date(System.currentTimeMillis());//获取当前时间
-        acceptTime = formatter.format(curDate);
-        String url = "http://http://172.17.192.1:8080/patrol/event/event/addJson";
+        String url = "http://172.27.35.1:8080/water-patrol/event/event/addJson";
+
+        SimpleDateFormat    sDateFormat    =   new    SimpleDateFormat("yyyy-MM-dd    hh:mm:ss", Locale.CHINA);
+        String    date    =    sDateFormat.format(new    java.util.Date());
+        acceptTime = date;
         RequestParams params = new RequestParams();
         params.put("happenAddr",addr.getText());
         params.put("reflectPeople", man.getText());
         params.put("reflectContent",reflect.getText());
-        params.put("acceptTime",acceptTime);
-        File myFile = new File(photoUrl.get(0));
-        try {
-            params.put("image", myFile,"application/octet-st ream");
-            Log.e("params", params.toString());
-            HttpUtil.post(url, params, new AsyncHttpResponseHandler() {
-                @Override
-                public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                    Log.e("success", new String(responseBody));
-                }
+        params.put("acceptTime", acceptTime);
 
-                @Override
-                public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                    Log.e("failure", "failure post");
-                }
-            });
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (imageList != null){
+            for (int j = 0; j < imageList.size(); j++){
+                params.put("imageList[" + j + "].url" ,imageList.get(j).getUrl());
+            }
         }
 
+        if (VoiceList.size() > 0)
+            params.put("VoiceList[0].url", VoiceList.get(0).getUrl());
+
+        Log.e("params", params.toString());
+        AsycHttpUtil.post(url, params, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                Log.e("success", new String(responseBody));
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                Log.e("failure", "failure post");
+            }
+        });
+    }
+
+    private void getReturnUrl(){
+        if (photoUrl != null){
+            Log.e("photoUrl.size", photoUrl.size() + "");
+            for (int i = 0; i < photoUrl.size(); i++){
+                String url = "http://172.27.35.1:8080/water-patrol/patrol/accessory/upload";
+                HttpUtil.sendRequestWithHttpClient(url, new File(photoUrl.get(i)), new HttpCallBackListener() {
+                    @Override
+                    public void onFinish(String response) {
+                        Gson gson = new Gson();
+                        PostFileReturn fileReturn = gson.fromJson(response, PostFileReturn.class);
+                        Log.e("PostFileReturn", fileReturn.getFileName());
+                        PostFile postFile = new PostFile(fileReturn.getFileName());
+                        imageList.add(postFile);
+                    }
+
+                    @Override
+                    public void onError(Exception e) {
+                        e.printStackTrace();
+                    }
+                });
+            }
+        }else {
+            Toast.makeText(IncidentReportActivity.this, "没有照片", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void getRecorder(){
+        if (mDatas.size() > 0){
+            int len = mDatas.size() - 1;
+            File myRecoederFile = new File(mDatas.get(len).getFilePath());
+            String url = "http://172.27.35.1:8080/water-patrol/patrol/accessory/upload";
+            HttpUtil.sendRequestWithHttpClient(url, myRecoederFile, new HttpCallBackListener() {
+                @Override
+                public void onFinish(String response) {
+                    Gson gson = new Gson();
+                    PostFileReturn fileReturn = gson.fromJson(response, PostFileReturn.class);
+                    Log.e("PostRecorderReturn", fileReturn.getFileName());
+                    PostFile postFile = new PostFile(fileReturn.getFileName());
+                    VoiceList.add(postFile);
+                }
+
+                @Override
+                public void onError(Exception e) {
+
+                }
+            });
+        }
+        else{
+            Toast.makeText(IncidentReportActivity.this, "没有录音", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void initRecorder(){

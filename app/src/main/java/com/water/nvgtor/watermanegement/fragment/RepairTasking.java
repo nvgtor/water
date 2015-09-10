@@ -20,7 +20,7 @@ import com.water.nvgtor.watermanegement.activity.RepairDetailActivity;
 import com.water.nvgtor.watermanegement.adapter.RepairTaskAdapter;
 import com.water.nvgtor.watermanegement.bean.RepairJson;
 import com.water.nvgtor.watermanegement.bean.RepairRows;
-import com.water.nvgtor.watermanegement.tool.HttpUtil;
+import com.water.nvgtor.watermanegement.tool.AsycHttpUtil;
 import com.water.nvgtor.watermanegement.view.UnPatrolLoadListview;
 
 import org.apache.http.Header;
@@ -52,8 +52,8 @@ public class RepairTasking extends Fragment implements UnPatrolLoadListview.ILoa
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getActivity(), RepairDetailActivity.class);
-                //intent.putExtra("id", RepairTaskes.get(position).getId());
-                //Log.d("position id", position + ":" + RepairTaskes.get(position).getId());
+                intent.putExtra("eid", repairRowses.get(position).getEid());
+                Log.e("RepairTasking position+eid", position + ":" + repairRowses.get(position).getEid());
                 startActivity(intent);
                 Toast.makeText(getActivity(), "你点击了维修详情" + position, Toast.LENGTH_SHORT).show();
             }
@@ -81,18 +81,18 @@ public class RepairTasking extends Fragment implements UnPatrolLoadListview.ILoa
     public void downloadClick() {
         RequestParams params = new RequestParams();
         params.put("nodeName","已派工单");
-        String url = "http://172.17.192.1:8080/water-repair/repair/listJsonbyNodeName";
-        HttpUtil.get(url, params,new JsonHttpResponseHandler() {
+        String url = "http://172.27.35.1:8080/water-repair/repair/listJsonbyNodeName";
+        AsycHttpUtil.get(url, params, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 // If the response is JSONObject instead of expected JSONArray
                 Gson gson = new Gson();
                 RepairJson RepairJson = gson.fromJson(response.toString(), RepairJson.class);
-                Log.d("return repair json", RepairJson.toString());
+                Log.d("RepairTasking json back", RepairJson.toString());
                 for (int i = 0; i < RepairJson.getRows().size(); i++) {
                     repairRowses.add(RepairJson.getRows().get(i));
                 }
-                Log.d("rows", repairRowses.toString());
+                Log.d("RepairTasking repairRows", repairRowses.toString());
                 if (adapter == null) {
                     adapter = new RepairTaskAdapter(getActivity(), repairRowses);
                     //adapter.setHandler(handler_h);
@@ -108,7 +108,7 @@ public class RepairTasking extends Fragment implements UnPatrolLoadListview.ILoa
                     public void run() {
                         progressBar.setVisibility(View.GONE);
                     }
-                }, 500);
+                }, 100);
             }
 
             @Override

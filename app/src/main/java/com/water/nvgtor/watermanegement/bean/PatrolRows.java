@@ -1,5 +1,7 @@
 package com.water.nvgtor.watermanegement.bean;
 
+import java.util.List;
+
 /**
  * Created by dell on 2015/8/21.
  */
@@ -10,10 +12,12 @@ public class PatrolRows {
     private String planName;
     private String personName;
     private String startTime;
+    private String endTime;
     private double timeLimit;
     private String dispatchingPerson;
     private String dispatchTime;
     private String remark;
+    private List<Track> trackList;
 
     public String getId() {
         return id;
@@ -55,6 +59,14 @@ public class PatrolRows {
         this.startTime = startTime;
     }
 
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
+
     public double getTimeLimit() {
         return timeLimit;
     }
@@ -86,6 +98,14 @@ public class PatrolRows {
         this.remark = remark;
     }
 
+    public List<Track> getTrackList() {
+        return trackList;
+    }
+
+    public void setTrackList(List<Track> trackList) {
+        this.trackList = trackList;
+    }
+
     @Override
     public String toString() {
         return "PatrolRows{" +
@@ -94,10 +114,12 @@ public class PatrolRows {
                 ", planName='" + planName + '\'' +
                 ", personName='" + personName + '\'' +
                 ", startTime='" + startTime + '\'' +
+                ", endTime='" + endTime + '\'' +
                 ", timeLimit=" + timeLimit +
                 ", dispatchingPerson='" + dispatchingPerson + '\'' +
                 ", dispatchTime='" + dispatchTime + '\'' +
                 ", remark='" + remark + '\'' +
+                ", trackList=" + trackList +
                 '}';
     }
 }

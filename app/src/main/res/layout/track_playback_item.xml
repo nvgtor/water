@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/id_tasking_ly"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#eee">
+        <TextView
+            android:id="@+id/id_track_item1"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:text="天津市南开区体育中心街水上东路"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"/>
+        <TextView
+            android:id="@+id/id_track_item2"
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:text="Joy"/>
+        <TextView
+            android:id="@+id/id_track_item3"
+            android:layout_width="80dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:text="2015-08-28 00:00:00"/>
+    </LinearLayout>
+
+</LinearLayout>

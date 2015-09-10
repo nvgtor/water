@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <include layout="@layout/back_head_for_patrol"/>
+
+    <LinearLayout
+        android:id="@+id/id_track_ly"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/id_back_rl"
+        android:background="#C0C0C0">
+        <TextView
+            android:id="@+id/id_track_tab1"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:text="巡检计划名称"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"/>
+        <TextView
+            android:id="@+id/id_track_tab2"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:text="执行人"/>
+        <TextView
+            android:id="@+id/id_track_tab3"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:text="结束时间"/>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/id_track_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/id_track_ly"
+        android:background="#696969" />
+    <ProgressBar
+        android:id="@+id/id_track_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/id_track_line">
+        <com.water.nvgtor.watermanegement.view.UnPatrolLoadListview
+            android:id="@+id/id_track_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:cacheColorHint="#00000000"
+            android:divider="#228B22"
+            android:dividerHeight="1dp">
+        </com.water.nvgtor.watermanegement.view.UnPatrolLoadListview>
+    </LinearLayout>
+
+</RelativeLayout>

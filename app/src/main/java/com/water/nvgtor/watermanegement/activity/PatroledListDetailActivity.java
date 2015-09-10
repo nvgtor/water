@@ -20,7 +20,7 @@ import com.water.nvgtor.watermanegement.adapter.PatroledDetailListAdapter;
 import com.water.nvgtor.watermanegement.bean.PatrolDetail;
 import com.water.nvgtor.watermanegement.bean.PatrolPlanPoint;
 import com.water.nvgtor.watermanegement.bean.PatrolTaskDetailList;
-import com.water.nvgtor.watermanegement.tool.HttpUtil;
+import com.water.nvgtor.watermanegement.tool.AsycHttpUtil;
 import com.water.nvgtor.watermanegement.view.UnPatrolLoadListview;
 
 import org.apache.http.Header;
@@ -195,8 +195,8 @@ public class PatroledListDetailActivity extends Activity implements UnPatrolLoad
         RequestParams params = new RequestParams();
         params.put("id",id);
         Log.e("params", params.toString());
-        String url = "http://172.17.192.1:8080/water-patrol/patrol/examine/editJson";
-        HttpUtil.get(url, params, new JsonHttpResponseHandler() {
+        String url = "http://172.27.35.1:8080/water-patrol/patrol/examine/editJson";
+        AsycHttpUtil.get(url, params, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 // If the response is JSONObject instead of expected JSONArray

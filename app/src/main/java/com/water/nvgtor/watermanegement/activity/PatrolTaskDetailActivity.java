@@ -21,7 +21,7 @@ import com.water.nvgtor.watermanegement.adapter.PatrolTaskDetailListAdapter;
 import com.water.nvgtor.watermanegement.bean.PatrolDetail;
 import com.water.nvgtor.watermanegement.bean.PatrolPlanPoint;
 import com.water.nvgtor.watermanegement.bean.PatrolTaskDetailList;
-import com.water.nvgtor.watermanegement.tool.HttpUtil;
+import com.water.nvgtor.watermanegement.tool.AsycHttpUtil;
 import com.water.nvgtor.watermanegement.view.UnPatrolLoadListview;
 
 import org.apache.http.Header;
@@ -71,6 +71,7 @@ public class PatrolTaskDetailActivity extends Activity implements UnPatrolLoadLi
 
         Intent intent = getIntent();
         id = intent.getStringExtra("id");
+        Log.e("PatrolTaskDetailActivity id",id);
 
         initView();
         downloadClick();
@@ -209,8 +210,8 @@ public class PatrolTaskDetailActivity extends Activity implements UnPatrolLoadLi
     public void downloadClick() {
         RequestParams params = new RequestParams();
         params.put("id",id);
-        String url = "http://172.17.192.1:8080/water-patrol/patrol/patrolMission/editJson";
-        HttpUtil.get(url, params, new JsonHttpResponseHandler() {
+        String url = "http://172.27.35.1:8080/water-patrol/patrol/patrolMission/editJson";
+        AsycHttpUtil.get(url, params, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 // If the response is JSONObject instead of expected JSONArray

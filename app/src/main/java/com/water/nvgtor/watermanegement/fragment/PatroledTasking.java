@@ -20,7 +20,7 @@ import com.water.nvgtor.watermanegement.adapter.PatroledTaskAdapter;
 import com.water.nvgtor.watermanegement.bean.PatroledJson;
 import com.water.nvgtor.watermanegement.bean.PatroledRows;
 import com.water.nvgtor.watermanegement.bean.PatroledTask;
-import com.water.nvgtor.watermanegement.tool.HttpUtil;
+import com.water.nvgtor.watermanegement.tool.AsycHttpUtil;
 import com.water.nvgtor.watermanegement.view.UnPatrolLoadListview;
 
 import org.apache.http.Header;
@@ -135,18 +135,18 @@ public class PatroledTasking extends Fragment implements UnPatrolLoadListview.IL
     };*/
 
     public void downloadClick() {
-        String url = "http://172.17.192.1:8080/water-patrol/patrol/examine/listJson";
-        HttpUtil.get(url, new JsonHttpResponseHandler() {
+        String url = "http://172.27.35.1:8080/water-patrol/patrol/examine/listJson";
+        AsycHttpUtil.get(url, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 // If the response is JSONObject instead of expected JSONArray
                 Gson gson = new Gson();
                 PatroledJson patroledJsons = gson.fromJson(response.toString(), PatroledJson.class);
-                Log.d("Json bean", patroledJsons.toString());
+                Log.d("PatroledTasking Json", patroledJsons.toString());
                 for (int i = 0; i < patroledJsons.getRows().size(); i++) {
                     patroledRowses.add(patroledJsons.getRows().get(i));
                 }
-                Log.d("rows", patroledRowses.toString());
+                Log.e("PatroledTasking rows", patroledRowses.toString());
                 if (adapter == null) {
                     adapter = new PatroledTaskAdapter(getActivity(), patroledRowses);
                     //adapter.setHandler(handler_h);
@@ -160,7 +160,7 @@ public class PatroledTasking extends Fragment implements UnPatrolLoadListview.IL
                     public void run() {
                         progressBar.setVisibility(View.GONE);
                     }
-                }, 1000);
+                }, 100);
             }
 
             @Override

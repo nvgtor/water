@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:background="#FFFFFF"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+    <!-- 表格布局 -->
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp" >
+        <!-- 表格布局：第一行 -->
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_top_corner_no_bottom_line"
+            android:padding="8dip" >
+            <TextView
+                android:id="@+id/row1_text1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="6dp"
+                android:layout_marginStart="6dp"
+                android:layout_weight="1"
+                android:text="事件类别:" />
+
+            <TextView
+                android:id="@+id/row1_text2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:text=""/>
+            <TextView
+                android:id="@+id/row1_text3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:text="事件等级:" />
+            <TextView
+                android:id="@+id/row1_text4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:layout_marginRight="6dp"
+                android:layout_marginEnd="6dp"
+                android:text=""/>
+        </TableRow>
+        <!-- 表格布局：第二行 -->
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_no_corner_without_bottom"
+            android:padding="6dip" >
+            <TextView
+                android:id="@+id/row2_text1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="6dp"
+                android:layout_marginStart="6dp"
+                android:layout_weight="1"
+                android:text="发生地点:" />
+
+            <TextView
+                android:id="@+id/row2_text2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:text=""/>
+            <TextView
+                android:id="@+id/row2_text3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:text="反映人:" />
+            <TextView
+                android:id="@+id/row2_text4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:layout_marginRight="6dp"
+                android:layout_marginEnd="6dp"
+                android:text=""/>
+        </TableRow>
+
+        <!-- 表格布局：第三行 -->
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_no_corner_without_bottom"
+            android:padding="6dip" >
+            <TextView
+                android:id="@+id/row3_text1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="6dp"
+                android:layout_marginStart="6dp"
+                android:layout_weight="1"
+                android:text="查勘人:" />
+
+            <TextView
+                android:id="@+id/row3_text2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:text=""/>
+            <TextView
+                android:id="@+id/row3_text3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:text="查勘人备注:" />
+
+            <TextView
+                android:id="@+id/row3_text4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:layout_marginRight="6dp"
+                android:layout_marginEnd="6dp"
+                android:text=""/>
+        </TableRow>
+        <!-- 表格布局：第四行 -->
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_no_corner_without_bottom"
+            android:padding="6dip" >
+            <TextView
+                android:id="@+id/row4_text1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="6dp"
+                android:layout_marginStart="6dp"
+                android:layout_weight="1"
+                android:text="反映内容:" />
+
+            <TextView
+                android:id="@+id/row4_text2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:layout_marginRight="6dp"
+                android:layout_marginEnd="6dp"
+                android:text=""/>
+        </TableRow>
+        <!-- 表格布局：第五行 -->
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_no_corner_without_bottom"
+            android:padding="6dip" >
+            <TextView
+                android:id="@+id/row5_text1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="6dp"
+                android:layout_marginStart="6dp"
+                android:layout_weight="1"
+                android:text="发生日期:" />
+
+            <TextView
+                android:id="@+id/row5_text2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:layout_marginRight="6dp"
+                android:layout_marginEnd="6dp"
+                android:text=""/>
+        </TableRow>
+
+        <!-- 表格布局：第六行 -->
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_bottom_corner_no_top_line"
+            android:padding="6dip" >
+            <TextView
+                android:id="@+id/row6_text1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="6dp"
+                android:layout_marginStart="6dp"
+                android:layout_weight="1"
+                android:text="截止时间:" />
+
+            <TextView
+                android:id="@+id/row6_text2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:layout_marginRight="6dp"
+                android:layout_marginEnd="6dp"
+                android:text=""/>
+        </TableRow>
+    </TableLayout>
+</LinearLayout>

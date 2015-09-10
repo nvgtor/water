@@ -30,7 +30,7 @@ import com.loopj.android.http.RequestParams;
 import com.water.nvgtor.watermanegement.R;
 import com.water.nvgtor.watermanegement.adapter.RecorderAdapter;
 import com.water.nvgtor.watermanegement.bean.Recorder;
-import com.water.nvgtor.watermanegement.tool.HttpUtil;
+import com.water.nvgtor.watermanegement.tool.AsycHttpUtil;
 import com.water.nvgtor.watermanegement.view.AudioRecorderButton;
 import com.water.nvgtor.watermanegement.view.MyMediaManager;
 
@@ -195,11 +195,11 @@ public class PatrolDetailReportActivity extends Activity{
         params.add("patrolPointID",patrolPointID);
         params.add("deviceID",deviceID);
         params.add("status",1+"");
-        String url = "http://172.17.192.1:8080/water-patrol/patrol/record/addJson";
-        HttpUtil.post(url, params, new AsyncHttpResponseHandler() {
+        String url = "http://172.27.35.1:8080/water-patrol/patrol/record/addJson";
+        AsycHttpUtil.post(url, params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                    Log.e("POST SUCCESS", new String(responseBody));
+                Log.e("POST SUCCESS", new String(responseBody));
             }
 
             @Override

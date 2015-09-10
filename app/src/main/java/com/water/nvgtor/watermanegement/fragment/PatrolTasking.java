@@ -19,7 +19,7 @@ import com.water.nvgtor.watermanegement.activity.PatrolTaskDetailActivity;
 import com.water.nvgtor.watermanegement.adapter.PatrolTaskListAdapter;
 import com.water.nvgtor.watermanegement.bean.PatrolJson;
 import com.water.nvgtor.watermanegement.bean.PatrolRows;
-import com.water.nvgtor.watermanegement.tool.HttpUtil;
+import com.water.nvgtor.watermanegement.tool.AsycHttpUtil;
 import com.water.nvgtor.watermanegement.view.UnPatrolLoadListview;
 
 import org.apache.http.Header;
@@ -101,23 +101,23 @@ public class PatrolTasking extends Fragment implements UnPatrolLoadListview.ILoa
     }
 
     public void downloadClick() {
-        String url = "http://172.17.192.1:8080/water-patrol/patrol/patrolMission/listJson";
-        HttpUtil.get(url, new JsonHttpResponseHandler() {
+        String url = "http://172.27.35.1:8080/water-patrol/patrol/patrolMission/listJson";
+        AsycHttpUtil.get(url, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 // If the response is JSONObject instead of expected JSONArray
                 Gson gson = new Gson();
                 PatrolJson patrolJson = gson.fromJson(response.toString(), PatrolJson.class);
                 Log.d("Json bean", patrolJson.toString());
-                for (int i = 0; i < patrolJson.getRows().size(); i++){
+                for (int i = 0; i < patrolJson.getRows().size(); i++) {
                     patrolRowses.add(patrolJson.getRows().get(i));
                 }
                 Log.d("rows", patrolRowses.toString());
-                if (adapter == null){
+                if (adapter == null) {
                     adapter = new PatrolTaskListAdapter(getActivity(), patrolRowses);
                     //adapter.setHandler(handler_h);
                     loadListview.setAdapter(adapter);
-                }else {
+                } else {
                     adapter.onDataChange(patrolRowses);
                 }
                 Handler handler = new Handler();
@@ -126,7 +126,7 @@ public class PatrolTasking extends Fragment implements UnPatrolLoadListview.ILoa
                     public void run() {
                         progressBar.setVisibility(View.GONE);
                     }
-                }, 3000);
+                }, 100);
             }
 
             @Override
@@ -138,7 +138,7 @@ public class PatrolTasking extends Fragment implements UnPatrolLoadListview.ILoa
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 super.onFailure(statusCode, headers, throwable, errorResponse);
-                Toast.makeText(getActivity(),"可能未联网，加载失败",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "可能未联网，加载失败", Toast.LENGTH_SHORT).show();
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override

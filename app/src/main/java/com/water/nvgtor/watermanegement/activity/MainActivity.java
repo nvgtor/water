@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.water.nvgtor.watermanegement.R;
@@ -23,12 +24,18 @@ import com.water.nvgtor.watermanegement.view.SlidingMenu;
 public class MainActivity extends FragmentActivity{
 
     private ImageView userImg;
+    private ImageView rightImg;
     private SlidingMenu mLeftMenu;
 
     private RelativeLayout menu_item1;
     private RelativeLayout menu_item2;
     private RelativeLayout menu_item3;
     private RelativeLayout menu_item4;
+
+    private String userName;
+
+    private TextView myName;
+    private ImageView userFace;
 
     /**
      * GridView相关
@@ -37,10 +44,10 @@ public class MainActivity extends FragmentActivity{
     private Context mContext;
     private GridView gridView;
     public String[] img_text = {"巡检", "维修", "临时任务", "事件上报",
-            "巡检地图", "通讯录", "系统设置"};
+            "巡检地图", "通讯录", "系统设置","轨迹回放"};
     public int[] imgs = {R.drawable.zhoumoqunaer, R.drawable.icon_game_tab_class_n,
             R.drawable.icon_game_tab_hot_n, R.drawable.btn_live_speak_n, R.drawable.detail_normal_addr,
-            R.drawable.walk, R.drawable.atm};
+            R.drawable.walk, R.drawable.atm, R.drawable.icon_find_square};
 
 
     @Override
@@ -48,7 +55,22 @@ public class MainActivity extends FragmentActivity{
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
+
         initView();
+        final Intent intent = getIntent();
+        userName = intent.getStringExtra("userName");
+        myName.setText(userName);
+
+        userFace.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent userIntent = new Intent(MainActivity.this, UserInfoActivity.class);
+                userIntent.putExtra("userName",userName);
+                startActivity(userIntent);
+
+            }
+        });
+
         MyGridAdapter adapter = new MyGridAdapter(this,img_text,imgs);
         gridView.setAdapter(adapter);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -81,7 +103,12 @@ public class MainActivity extends FragmentActivity{
                         startActivity(intent5);
                         break;
                     case 6:
-                        Toast.makeText(MainActivity.this, "系统设置" , Toast.LENGTH_SHORT).show();
+                        Intent intent6 = new Intent(MainActivity.this, SettingsActivity.class);
+                        startActivity(intent6);
+                        break;
+                    case 7:
+                        Intent intent7 = new Intent(MainActivity.this, TrackPlayBackActivity.class);
+                        startActivity(intent7);
                         break;
                 }
             }
@@ -93,8 +120,12 @@ public class MainActivity extends FragmentActivity{
         gridView = (GridView)findViewById(R.id.gridview);
 
         userImg = (ImageView)findViewById(R.id.top_head_userImg);
+        rightImg = (ImageView) findViewById(R.id.top_more);
+        rightImg.setVisibility(View.GONE);
 
         mLeftMenu = (SlidingMenu)findViewById(R.id.id_menu);
+        myName = (TextView) findViewById(R.id.id_my_name);
+        userFace = (ImageView) findViewById(R.id.id_userface);
         menu_item1 = (RelativeLayout)findViewById(R.id.menu_item1);
         menu_item2 = (RelativeLayout)findViewById(R.id.menu_item2);
         menu_item3 = (RelativeLayout)findViewById(R.id.menu_item3);
@@ -126,24 +157,31 @@ public class MainActivity extends FragmentActivity{
         menu_item1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this,"个人信息", Toast.LENGTH_SHORT).show();
+                Intent changePW = new Intent(MainActivity.this, ChangePasswordActivity.class);
+                startActivity(changePW);
+                Toast.makeText(MainActivity.this,"修改密码", Toast.LENGTH_SHORT).show();
             }
         });
         menu_item2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this,"草稿", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this,"软件说明", Toast.LENGTH_SHORT).show();
             }
         });
         menu_item3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent myLocIntent = new Intent(MainActivity.this, MyLocationActivity.class);
+                startActivity(myLocIntent);
                 Toast.makeText(MainActivity.this,"设置", Toast.LENGTH_SHORT).show();
             }
         });
         menu_item4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Intent exitIntent = new Intent(MainActivity.this, LoginActivity.class);
+                //startActivity(exitIntent);
+                finish();
                 Toast.makeText(MainActivity.this,"退出账号", Toast.LENGTH_SHORT).show();
             }
         });

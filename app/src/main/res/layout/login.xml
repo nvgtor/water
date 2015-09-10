@@ -88,21 +88,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true"
-            android:paddingLeft="@dimen/login_bottom_line"
-            android:gravity="start"
+            android:gravity="center"
+            android:layout_centerInParent="true"
             android:text="@string/login_forget"
-            android:textSize="12sp"/>
-        <TextView
-            android:id="@+id/login_register"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:longClickable="true"
-            android:paddingEnd="@dimen/login_bottom_line"
-            android:paddingRight="@dimen/login_bottom_line"
-            android:gravity="end"
-            android:layout_alignParentRight="true"
-            android:clickable="true"
-            android:text="@string/login_register"
             android:textSize="12sp"/>
     </RelativeLayout>
 

@@ -20,7 +20,7 @@ import com.water.nvgtor.watermanegement.activity.RepairDetailActivity;
 import com.water.nvgtor.watermanegement.adapter.RepairTaskAdapter;
 import com.water.nvgtor.watermanegement.bean.RepairJson;
 import com.water.nvgtor.watermanegement.bean.RepairRows;
-import com.water.nvgtor.watermanegement.tool.HttpUtil;
+import com.water.nvgtor.watermanegement.tool.AsycHttpUtil;
 import com.water.nvgtor.watermanegement.view.UnPatrolLoadListview;
 
 import org.apache.http.Header;
@@ -79,8 +79,8 @@ public class RepairNotRead extends Fragment implements UnPatrolLoadListview.ILoa
     public void downloadClick() {
         RequestParams params = new RequestParams();
         params.put("nodeName","待审核工单");
-        String url = "http://172.17.192.1:8080/water-repair/repair/listJsonbyNodeName";
-        HttpUtil.get(url, params, new JsonHttpResponseHandler() {
+        String url = "http://172.17.192.11:8080/water-repair/repair/listJsonbyNodeName";
+        AsycHttpUtil.get(url, params, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 // If the response is JSONObject instead of expected JSONArray
@@ -92,11 +92,11 @@ public class RepairNotRead extends Fragment implements UnPatrolLoadListview.ILoa
                 }
                 Log.d("rows", repairRowses.toString());
                 //if (adapter == null) {
-                    adapter = new RepairTaskAdapter(getActivity(), repairRowses);
-                    //adapter.setHandler(handler_h);
-                    loadListview.setAdapter(adapter);
+                adapter = new RepairTaskAdapter(getActivity(), repairRowses);
+                //adapter.setHandler(handler_h);
+                loadListview.setAdapter(adapter);
                 //} else {
-                    //adapter.onDataChange(repairRowses);
+                //adapter.onDataChange(repairRowses);
                 //}
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
@@ -104,7 +104,7 @@ public class RepairNotRead extends Fragment implements UnPatrolLoadListview.ILoa
                     public void run() {
                         progressBar.setVisibility(View.GONE);
                     }
-                }, 500);
+                }, 100);
 
             }
 
@@ -118,7 +118,7 @@ public class RepairNotRead extends Fragment implements UnPatrolLoadListview.ILoa
                     public void run() {
                         progressBar.setVisibility(View.GONE);
                     }
-                }, 500);
+                }, 1000);
             }
         });
     }
